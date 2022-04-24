@@ -1,0 +1,13 @@
+// Scroller
+.scroller-scrollbar::-webkit-scrollbar {
+   height: 5px;
+}
+.scroller-scrollbar::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+.scroller-scrollbar::-webkit-scrollbar-thumb {
+   background-color: black;
+}
+.dark .scroller-scrollbar::-webkit-scrollbar-thumb {
+   background-color: white;
+}

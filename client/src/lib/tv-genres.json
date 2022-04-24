@@ -1,0 +1,85 @@
+{
+  "type": "tv",
+  "genres": [
+    {
+      "id": 10759,
+      "name": "Action & Adventure",
+		  "image": "/images/genres/tv/action-adventure.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Animation",
+		  "image": "/images/genres/tv/animation.jpg"
+    },
+    {
+      "id": 35,
+      "name": "Comedy",
+		  "image": "/images/genres/tv/comedy.jpeg"
+    },
+    {
+      "id": 80,
+      "name": "Crime",
+		  "image": "/images/genres/tv/crime.jpg"
+    },
+    {
+      "id": 99,
+      "name": "Documentary",
+		  "image": "/images/genres/tv/documentary.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Drama",
+		  "image": "/images/genres/tv/drama.jpg"
+    },
+    {
+      "id": 10751,
+      "name": "Family",
+		  "image": "/images/genres/tv/family.jpg"
+    },
+    {
+      "id": 10762,
+      "name": "Kids",
+		  "image": "/images/genres/tv/kids.jpg"
+    },
+    {
+      "id": 9648,
+      "name": "Mystery",
+		  "image": "/images/genres/tv/mystery.jpg"
+    },
+    {
+      "id": 10763,
+      "name": "News",
+		  "image": "/images/genres/tv/news.jpg"
+    },
+    {
+      "id": 10764,
+      "name": "Reality",
+		  "image": "/images/genres/tv/reality.jpg"
+    },
+    {
+      "id": 10765,
+      "name": "Sci-Fi & Fantasy",
+		  "image": "/images/genres/tv/sci-fi-fantasy.jpg"
+    },
+    {
+      "id": 10766,
+      "name": "Soap",
+	  	"image": "/images/genres/tv/soap.jpg"
+    },
+    {
+      "id": 10767,
+      "name": "Talk",
+	  	"image": "/images/genres/tv/talk.jpg"
+    },
+    {
+      "id": 10768,
+      "name": "War & Politics",
+	  	"image": "/images/genres/tv/war-politics.jpg"
+    },
+    {
+      "id": 37,
+      "name": "Western",
+  		"image": "/images/genres/tv/western.jpg"
+    }
+  ]
+}

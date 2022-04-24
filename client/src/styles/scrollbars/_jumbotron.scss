@@ -1,0 +1,10 @@
+// Overview
+.scroller-scrollbar::-webkit-scrollbar {
+   height: 5px;
+}
+.scroller-scrollbar::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+.scroller-scrollbar::-webkit-scrollbar-thumb {
+   background-color: white;
+}
