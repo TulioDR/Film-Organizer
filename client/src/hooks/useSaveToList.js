@@ -4,13 +4,13 @@ export default function useSaveToList() {
    const [showSaveToListModal, setShowSaveToListModal] = useState(false);
 
    const [currentData, setCurrentData] = useState({
-      item_id: null,
+      item_id: "",
       item_type: "",
       item_title: "",
       item_poster: "",
    });
 
-   const openSaveToListModal = (id, mediaType, title, posterPath) => {
+   const openSaveToListModal = (id, mediaType, posterPath, title) => {
       setCurrentData({
          item_id: id,
          item_type: mediaType,
