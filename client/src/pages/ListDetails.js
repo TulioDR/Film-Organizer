@@ -136,7 +136,9 @@ export default function ListDetails() {
          <DeleteItemsModal
             {...{ itemsToDelete, closeModal, id, cancelBtn, showModal }}
          />
-         <DeleteItems {...{ dispatch, itemsToDelete, items }} />
+         <DeleteItems
+            {...{ dispatch, itemsToDelete, items, cancelBtn, openDelete }}
+         />
       </>
    );
 }
