@@ -6,10 +6,7 @@ export default function ChevronIcon({ open }) {
                open ? "rotate-180" : ""
             }`}
          >
-            <span className="material-icons md:hidden">expand_more</span>
-            <span className="material-icons hidden md:inline">
-               chevron_right
-            </span>
+            <span className="material-icons w-10">expand_more</span>
          </span>
       </div>
    );
