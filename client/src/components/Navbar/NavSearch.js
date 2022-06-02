@@ -22,10 +22,10 @@ export default function NavSearch() {
    return (
       <form
          onSubmit={handleSubmit}
-         className="hidden md:flex flex-col pr-4 md:pr-0 md:w-1/2 h-8 relative bottom-2 md:bottom-0"
+         className="hidden md:flex flex-col pr-4 md:pr-0 h-8 relative bottom-2 md:bottom-0"
       >
          <div className="w-full flex h-full">
-            <div className="relative w-full">
+            <div className="relative">
                <InputText
                   value={inputValue}
                   isMovie={isMovie}
@@ -35,7 +35,10 @@ export default function NavSearch() {
                />
                {showDeleteTextBtn && <ClearTextBtn onClick={clearInput} />}
             </div>
-            <SearchBtn />
+            {/* <SearchBtn /> */}
+            <button className="ml-2 h-10 w-10 rounded-md bg-blue-400 text-white grid place-content-center shadow-md">
+               <span className="material-icons">filter_list</span>
+            </button>
          </div>
 
          {openFounded && (

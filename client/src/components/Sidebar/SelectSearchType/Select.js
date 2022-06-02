@@ -24,7 +24,7 @@ export default function Select() {
          onBlur={() => setOpen(false)}
          className="relative outline-none"
       >
-         <div className="h-11 pl-6 my-2">
+         <div className="h-11 pl-6 mb-2">
             <div className="rounded-md bg-blue-400 flex h-11 pl-2 items-center justify-between">
                <Text isMovie={isMovie} />
                {sidebarExtended && <ChevronIcon open={open} />}
