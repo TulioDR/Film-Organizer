@@ -6,7 +6,7 @@ import { matchPath } from "react-router";
 export default function SideItem({ name, icon, link, ...props }) {
    const buttonRef = useRef();
 
-   const { closeSidebarMobile } = useSidebarExtendedContext();
+   const { closeSidebarMobile, sidebarExtended } = useSidebarExtendedContext();
    const location = useLocation();
    const match = matchPath(location.pathname, {
       path: link,
@@ -15,7 +15,7 @@ export default function SideItem({ name, icon, link, ...props }) {
    });
    return (
       <li
-         className="h-11 relative group overflow-hidden mb-1"
+         className="h-11 relative group overflow-hidden "
          onClick={closeSidebarMobile}
          ref={buttonRef}
       >
@@ -30,11 +30,16 @@ export default function SideItem({ name, icon, link, ...props }) {
          <NavLink
             exact
             to={link}
-            // activeClassName="bg-blue-400 dark:bg-gray-light pointer-events-none rounded-r-full"
             className="absolute left-0 top-0 pl-8 cursor-pointer flex items-center h-full w-full px-2"
          >
             <span className="material-icons mx-2">{icon}</span>
-            <span className="pl-4 truncate">{name}</span>
+            <span
+               className={`pl-4 truncate duration-100 ${
+                  sidebarExtended ? "" : "opacity-0"
+               }`}
+            >
+               {name}
+            </span>
          </NavLink>
       </li>
    );
