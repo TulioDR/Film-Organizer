@@ -22,14 +22,16 @@ export default function Select() {
          tabIndex={0}
          onClick={toggle}
          onBlur={() => setOpen(false)}
-         className="relative outline-none border-b-2 border-purple dark:border-gray-light"
+         className="relative outline-none"
       >
-         <div className="flex h-11 pl-2 items-center justify-between">
-            <Text isMovie={isMovie} />
-            {sidebarExtended && <ChevronIcon open={open} />}
+         <div className="h-11 pl-6 my-2">
+            <div className="rounded-md bg-blue-400 flex h-11 pl-2 items-center justify-between">
+               <Text isMovie={isMovie} />
+               {sidebarExtended && <ChevronIcon open={open} />}
+            </div>
          </div>
          {open && (
-            <ul className="md:absolute left-full top-0 p-2 bg-purple-dark dark:bg-gray-lightDark md:w-36 md:rounded-md">
+            <ul className="md:absolute z-10 top-14 w-full left-0 p-2 bg-blue-400 rounded-md">
                <Option
                   isMovie={isMovie}
                   icon="movie"

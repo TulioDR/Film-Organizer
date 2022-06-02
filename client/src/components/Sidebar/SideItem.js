@@ -15,15 +15,15 @@ export default function SideItem({ name, icon, link, ...props }) {
    });
    return (
       <li
-         className="h-11 relative group overflow-hidden"
+         className="h-11 relative group overflow-hidden mb-1"
          onClick={closeSidebarMobile}
          ref={buttonRef}
       >
          <div
-            className={`h-full rounded-r-full transform duration-200 ${
+            className={`h-full rounded-r-full transform ${
                match?.isExact
-                  ? " w-full bg-blue-400"
-                  : " w-20 bg-blue-300 -translate-x-full group-hover:translate-x-0"
+                  ? "duration-500 w-full bg-blue-400"
+                  : "duration-200 w-20 bg-blue-300 -translate-x-full group-hover:translate-x-0"
             }`}
          ></div>
          {props.children}

@@ -30,7 +30,7 @@ export default function SideLists() {
    return (
       <div>
          {sidebarExtended && (
-            <div className="pl-4 pb-1 text-gray-300">Lists</div>
+            <div className="pl-4 pb-1 text-gray-800">Lists</div>
          )}
          {lists?.length > 0 ? (
             <ul>

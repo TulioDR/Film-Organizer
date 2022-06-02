@@ -27,7 +27,7 @@ export default function SideForm() {
       <>
          <button
             onClick={openModal}
-            className="py-2 px-5 mx-auto my-2 rounded-full shadow-lg bg-purple-dark dark:bg-purple-900 hover:bg-opacity-80 flex items-center justify-center truncate focus:outline-none"
+            className="py-2 px-5 mx-auto my-2 rounded-md shadow-lg bg-blue-400 flex items-center justify-center truncate focus:outline-none"
          >
             Create a list
             <span className="material-icons ml-2">add</span>
