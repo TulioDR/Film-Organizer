@@ -20,7 +20,7 @@ export default function SideItem({ name, icon, link, ...props }) {
          ref={buttonRef}
       >
          <div
-            className={`h-full rounded-r-full transform ${
+            className={`h-full rounded-r-md transform ${
                match?.isExact
                   ? "duration-500 w-full bg-blue-400"
                   : "duration-200 w-20 bg-blue-300 -translate-x-full group-hover:translate-x-0"

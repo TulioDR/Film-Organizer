@@ -3,9 +3,9 @@ export default function ClearTextBtn({ onClick }) {
       <button
          type="button"
          onClick={onClick}
-         className="absolute top-0 right-0 w-10 h-full flex items-center justify-center focus:outline-none"
+         className="absolute top-0 right-0 w-10 h-10 focus:outline-none flex justify-center"
       >
-         <span className="material-icons text-2xl text-black dark:text-white h-full">
+         <span className="material-icons text-2xl flex items-center text-black dark:text-white h-full">
             close
          </span>
       </button>
