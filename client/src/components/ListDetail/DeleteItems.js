@@ -31,10 +31,10 @@ export default function DeleteItems({
             <span className="material-icons text-white text-3xl">close</span>
          </button>
          <button
-            className={`focus:outline-none w-full h-full bg-red-900 rounded-r-md z-50 ${
+            className={`focus:outline-none w-full h-full text-white bg-red-900 rounded-r-md z-50 ${
                openDelete
                   ? itemsToDelete.length > 0
-                     ? "text-white"
+                     ? ""
                      : "pointer-events-none text-gray-400"
                   : "rounded-l-md"
             } `}
