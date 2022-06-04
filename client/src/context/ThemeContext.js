@@ -14,7 +14,8 @@ export default function ThemeProvider({ children }) {
       localStorage.setItem("theme", theme);
    }, [theme, colorTheme]);
 
-   const data = { colorTheme, setTheme };
+   const toggleTheme = () => setTheme(colorTheme);
+   const data = { colorTheme, setTheme, toggleTheme };
 
    return (
       <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>

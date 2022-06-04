@@ -1,7 +1,6 @@
-import { useCallback, useState, useEffect, useContext } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { ThemeContext } from "../context/ThemeContext";
 import { getLists, resetLists } from "../actions/lists";
 import decode from "jwt-decode";
 
@@ -10,12 +9,10 @@ export default function useUser() {
       JSON.parse(localStorage.getItem("profile"))
    );
 
-   const { colorTheme, setTheme } = useContext(ThemeContext);
    const history = useHistory();
    const dispatch = useDispatch();
    const dispatchLists = useDispatch();
 
-   const toggleTheme = () => setTheme(colorTheme);
    const login = () => history.push("/auth");
    const logout = useCallback(() => {
       setUser(null);
@@ -37,5 +34,5 @@ export default function useUser() {
       setUser(JSON.parse(localStorage.getItem("profile")));
    }, [user?.token, logout]);
 
-   return [user, toggleTheme, login, logout, colorTheme];
+   return [user, login, logout];
 }
