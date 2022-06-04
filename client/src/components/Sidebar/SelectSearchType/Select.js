@@ -20,21 +20,21 @@ export default function Select() {
          tabIndex={0}
          onClick={toggle}
          onBlur={() => setOpen(false)}
-         className={`relative outline-none mb-2 ml-6 rounded-md bg-blue-400 dark:bg-blue-600 transition duration-300 overflow-hidden ${
+         className={`relative outline-none mb-2 ml-6 rounded-md bg-blue-400 dark:bg-blue-600 duration-300 overflow-hidden ${
             open ? "h-32" : "h-11"
          }`}
       >
          <div className="flex h-11 pl-4 cursor-pointer items-center justify-between">
-            <div className="flex items-center transition-colors">
-               <span className="material-icons ">
+            <div className="flex items-center text-black dark:text-white">
+               <span className="material-icons duration-100">
                   {isMovie ? "movie" : "tv"}
                </span>
-               <span className="pl-6 truncate">
+               <span className="pl-6 truncate duration-100">
                   {`Search ${isMovie ? "Movies" : "TV Series"}`}
                </span>
             </div>
             <span
-               className={`material-icons transform duration-200 grid place-items-center w-8 h-full ${
+               className={`material-icons transform transition-transform duration-200 grid place-items-center w-8 h-full ${
                   open ? "rotate-180" : ""
                }`}
             >

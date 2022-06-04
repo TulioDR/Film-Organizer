@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRef } from "react";
 import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 import { matchPath } from "react-router";
@@ -33,20 +33,19 @@ export default function SideItem({ name, icon, link, ...props }) {
          )}
 
          {props.children}
-         <NavLink
-            exact
+         <Link
             to={link}
             className="absolute h-full w-full top-0 pl-10 flex items-center"
          >
             <span className="material-icons">{icon}</span>
             <span
-               className={`pl-6 truncate duration-100 ${
+               className={`pl-6 truncate transition-opacity duration-100 ${
                   sidebarExtended ? "" : "opacity-0"
                }`}
             >
                {name}
             </span>
-         </NavLink>
+         </Link>
       </li>
    );
 }

@@ -1,19 +1,20 @@
 export default function UserLogo({ user }) {
    return (
-      <div className="w-10 h-10 rounded-full overflow-hidden cursor-pointer bg-purple hover:bg-purple-700 flex justify-center items-center">
-         {user ? (
-            user.result.imageUrl ? (
-               <img src={user.result.imageUrl} alt="user" className="" />
-            ) : (
-               <div className="grid text-xl place-items-center">
-                  {user.result.name.charAt(0)}
-               </div>
-            )
+      <div className="relative mx-2 flex justify-center group">
+         {user.result.imageUrl ? (
+            <img
+               src={user.result.imageUrl}
+               alt={user.result.name}
+               className="rounded-full h-10 w-10"
+            />
          ) : (
-            <div className="grid place-items-center">
-               <span className="material-icons">account_circle</span>
+            <div className="rounded-full h-10 w-10 text-xl bg-blue-400 grid place-items-center">
+               {user.result.name.charAt(0)}
             </div>
          )}
+         <span className="absolute w-auto min-w-max scale-0 group-hover:scale-100 duration-100 text-sm top-full transform translate-y-1 rounded-full bg-blue-400 py-1 px-4">
+            Logged in as {user.result.name}
+         </span>
       </div>
    );
 }
