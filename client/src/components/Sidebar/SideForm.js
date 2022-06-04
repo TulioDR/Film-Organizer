@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createList } from "../../actions/lists";
+import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 import CreateListModal from "../Modals/CreateListModal";
 
 export default function SideForm() {
@@ -23,15 +24,28 @@ export default function SideForm() {
       closeModal();
    };
 
+   const { sidebarExtended } = useSidebarExtendedContext();
    return (
       <>
-         <button
+         <div
             onClick={openModal}
-            className="py-2 px-5 mx-auto my-2 rounded-md shadow-lg bg-blue-400 flex items-center justify-center truncate focus:outline-none"
+            className={`my-2 bg-blue-400 hover:bg-blue-500 cursor-pointer grid place-content-center duration-200 ${
+               sidebarExtended
+                  ? "h-10 ml-6 rounded-md"
+                  : "h-4 pointer-events-none"
+            }`}
          >
-            Create a list
-            <span className="material-icons ml-2">add</span>
-         </button>
+            <div
+               className={`flex items-center space-x-2 ${
+                  sidebarExtended
+                     ? "delay-200 duration-200"
+                     : "opacity-0 duration-100"
+               }`}
+            >
+               <span>Create a list</span>
+               <span className="material-icons">add</span>
+            </div>
+         </div>
 
          <CreateListModal
             {...{

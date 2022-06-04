@@ -25,8 +25,8 @@ export default function NavSearch() {
          className="hidden md:flex flex-col pr-4 md:pr-0 h-10 relative bottom-2 md:bottom-0"
       >
          <div className="w-full flex h-10">
-            <div className="relative flex items-center bg-white rounded-full h-full w-80 shadow-md">
-               <span className="material-icons h-full w-14 flex items-center justify-center">
+            <div className="relative flex items-center bg-white dark:bg-gray-200 rounded-full h-full w-80 shadow-md">
+               <span className="material-icons h-full w-14 flex items-center justify-center text-black">
                   search
                </span>
                <InputText
@@ -39,7 +39,7 @@ export default function NavSearch() {
                {showDeleteTextBtn && <ClearTextBtn onClick={clearInput} />}
             </div>
             <button
-               className="ml-2 h-10 w-10 rounded-md bg-blue-400 text-white grid place-content-center shadow-md focus:outline-none"
+               className="ml-2 h-10 w-10 rounded-md bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 text-white grid place-content-center shadow-md focus:outline-none"
                type="button"
             >
                <span className="material-icons">filter_list</span>

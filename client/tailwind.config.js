@@ -75,6 +75,7 @@ module.exports = {
          aspectRatio: ["responsive"],
          display: ["group-hover"],
          brightness: ["hover"],
+         scale: ["group-hover"],
       },
    },
    plugins: [

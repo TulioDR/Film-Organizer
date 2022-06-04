@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { getLists, resetLists } from "../actions/lists";
 import decode from "jwt-decode";
 
-export default function useUser(setOpenUserDropDown) {
+export default function useUser() {
    const [user, setUser] = useState(
       JSON.parse(localStorage.getItem("profile"))
    );
@@ -18,11 +18,10 @@ export default function useUser(setOpenUserDropDown) {
    const toggleTheme = () => setTheme(colorTheme);
    const login = () => history.push("/auth");
    const logout = useCallback(() => {
-      setOpenUserDropDown(false);
       setUser(null);
       dispatch({ type: "LOGOUT" });
       history.push("/home");
-   }, [history, dispatch, setOpenUserDropDown]);
+   }, [history, dispatch]);
 
    useEffect(() => {
       if (user) dispatchLists(getLists());

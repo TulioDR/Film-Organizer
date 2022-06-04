@@ -1,13 +1,10 @@
 import { useState } from "react";
-import ChevronIcon from "./ChevronIcon";
-import Option from "./Option";
-import Text from "./Text";
 
-import useSidebarExtendedContext from "../../../context/SidebarExtendedContext";
+import Option from "./Option";
+
 import useValueContext from "../../../context/ValueContext";
 
 export default function Select() {
-   const { sidebarExtended } = useSidebarExtendedContext();
    const { isMovie, setIsMovie, changeFoundedType } = useValueContext();
 
    const [open, setOpen] = useState();
@@ -23,52 +20,41 @@ export default function Select() {
          tabIndex={0}
          onClick={toggle}
          onBlur={() => setOpen(false)}
-         className="relative outline-none mb-2"
+         className={`relative outline-none mb-2 ml-6 rounded-md bg-blue-400 dark:bg-blue-600 transition duration-300 overflow-hidden ${
+            open ? "h-32" : "h-11"
+         }`}
       >
-         <div
-            className={`ml-6 rounded-md bg-blue-400 duration-300 overflow-hidden ${
-               open ? "h-32" : "h-11"
-            }`}
-         >
-            <div className="flex h-11 pl-2 items-center justify-between duration-300 ">
-               <Text isMovie={isMovie} />
-               {sidebarExtended && <ChevronIcon open={open} />}
+         <div className="flex h-11 pl-4 cursor-pointer items-center justify-between">
+            <div className="flex items-center transition-colors">
+               <span className="material-icons ">
+                  {isMovie ? "movie" : "tv"}
+               </span>
+               <span className="pl-6 truncate">
+                  {`Search ${isMovie ? "Movies" : "TV Series"}`}
+               </span>
             </div>
-            <ul className="p-2 pt-0">
-               <Option
-                  isMovie={isMovie}
-                  icon="movie"
-                  text="Movies"
-                  changeType={changeType}
-                  movie={true}
-               />
-               <Option
-                  isMovie={isMovie}
-                  icon="tv"
-                  text="TV Shows"
-                  changeType={changeType}
-                  movie={false}
-               />
-            </ul>
+            <span
+               className={`material-icons transform duration-200 grid place-items-center w-8 h-full ${
+                  open ? "rotate-180" : ""
+               }`}
+            >
+               expand_more
+            </span>
          </div>
-         {/* {open && (
-            <ul className="md:absolute z-10 top-14 w-full left-0 p-2 bg-blue-400 rounded-md">
-               <Option
-                  isMovie={isMovie}
-                  icon="movie"
-                  text="Movies"
-                  changeType={changeType}
-                  movie={true}
-               />
-               <Option
-                  isMovie={isMovie}
-                  icon="tv"
-                  text="TV Shows"
-                  changeType={changeType}
-                  movie={false}
-               />
-            </ul>
-         )} */}
+         <ul className="px-2">
+            <Option
+               icon="movie"
+               text="Movies"
+               changeType={changeType}
+               movie={true}
+            />
+            <Option
+               icon="tv"
+               text="TV Shows"
+               changeType={changeType}
+               movie={false}
+            />
+         </ul>
       </div>
    );
 }

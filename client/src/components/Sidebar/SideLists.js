@@ -30,7 +30,7 @@ export default function SideLists() {
    return (
       <div>
          {sidebarExtended && (
-            <div className="pl-4 pb-1 text-gray-800">Lists</div>
+            <div className="ml-6 mb-1 text-gray-800">Lists</div>
          )}
          {lists?.length > 0 ? (
             <ul>
@@ -52,10 +52,8 @@ export default function SideLists() {
                ))}
             </ul>
          ) : (
-            <div className="p-4 pt-0">
-               <div className="rounded-md bg-purple-dark dark:bg-purple-900 p-3 text-center shadow-lg">
-                  The Lists that you create will appear here
-               </div>
+            <div className="rounded-md bg-blue-400 dark:bg-blue-600 p-3 text-center ml-6">
+               The Lists that you create will appear here
             </div>
          )}
 

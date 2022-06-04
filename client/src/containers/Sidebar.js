@@ -16,22 +16,12 @@ export default function Sidebar() {
    return (
       <SideContainer>
          <Select />
-         <div
-            className={`card-scrollbar overflow-x-hidden flex-1 ${
-               sidebarExtended
-                  ? "overflow-y-auto"
-                  : "overflow-y-hidden hover:overflow-y-auto"
-            }`}
-         >
+         <div className="flex-1 card-scrollbar">
             <SideLinks isMovie={isMovie} />
 
             {user ? (
                <>
-                  {sidebarExtended ? (
-                     <SideForm />
-                  ) : (
-                     <div className="h-3 w-full bg-white"></div>
-                  )}
+                  <SideForm />
                   <SideLists />
                </>
             ) : (

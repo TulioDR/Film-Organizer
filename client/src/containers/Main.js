@@ -5,7 +5,7 @@ export default function Main({ children }) {
    return (
       <main
          className={`pb-6 px-6 relative mt-14 md:mt-20 md:${
-            sidebarExtended ? "ml-62" : "ml-20"
+            sidebarExtended ? "ml-60" : "ml-20"
          }`}
       >
          {children}

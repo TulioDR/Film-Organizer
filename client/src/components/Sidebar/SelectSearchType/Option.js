@@ -1,15 +1,11 @@
-export default function Option({ isMovie, icon, text, changeType, movie }) {
+export default function Option({ icon, text, changeType, movie }) {
    return (
       <li
          onClick={() => changeType(movie)}
-         className={`h-9 pl-7 md:pl-0 md:p-2 flex items-center cursor-pointer md:hover:bg-blue-200 rounded-md ${
-            isMovie === movie
-               ? "cursor-pointer"
-               : "cursor-pointer md:hover:bg-blue-200 md:dark:hover:bg-gray-light"
-         }`}
+         className="h-9 p-2 pl-3 flex items-center cursor-pointer hover:bg-blue-200 dark:hover:bg-blue-400 rounded-md"
       >
-         <span className="material-icons mx-2">{icon}</span>
-         <span className="ml-2">{text}</span>
+         <span className="material-icons">{icon}</span>
+         <span className="ml-6">{text}</span>
       </li>
    );
 }
