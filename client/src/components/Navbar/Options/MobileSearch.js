@@ -3,9 +3,7 @@ import FoundedMedia from "../SearchBar/FoundedMedia";
 import ClearTextBtn from "../SearchBar/ClearTextBtn";
 import BackBtn from "../SearchBar/BackBtn";
 import useValueContext from "../../../context/ValueContext";
-
-import MobileSearchBtn from "./MobileSearchBtn";
-
+//This is not being used at the moment
 export default function MobileSearch() {
    const {
       inputValue,
@@ -25,7 +23,12 @@ export default function MobileSearch() {
    const mobile = true;
    return (
       <div>
-         <MobileSearchBtn onClick={openMobileSearch} />
+         <button
+            onClick={openMobileSearch}
+            className="flex justify-center items-center mr-2 cursor-pointer md:hidden focus:outline-none"
+         >
+            <span className="material-icons text-3xl">search</span>
+         </button>
          {showMobileSearch && (
             <form
                onSubmit={(e) => handleSubmit(e, closeMobileSearch, mobile)}
