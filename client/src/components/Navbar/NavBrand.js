@@ -35,7 +35,7 @@ export default function NavBrand() {
             <span className="material-icons">menu</span>
          </Button>
 
-         <span className="text-lg md:text-xl uppercase font-extrabold ml-4 text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-blue-400">
+         <span className="app-brand uppercase ml-4 text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-blue-400">
             Film's Organizer
          </span>
       </span>

@@ -44,7 +44,7 @@ export default function Home() {
                changeDisplayedMovie={changeDisplayedMovie}
             />
          </div> */}
-         <NewJumbotron {...{ backgroundImage, nowPlaying }} />
+         <NewJumbotron {...{ nowPlaying }} />
 
          <div className="lg:hidden">
             <SubTitle>Movies now playing on Theaters</SubTitle>

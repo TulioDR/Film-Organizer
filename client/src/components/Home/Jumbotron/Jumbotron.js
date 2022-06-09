@@ -23,7 +23,6 @@ export default function Jumbotron({
    if (displayedMovie) {
       var { title, vote_average, release_date, id } = displayedMovie;
    }
-
    return (
       <div className="relative mb-4 max-h-96 rounded-lg overflow-hidden shadow-material bg-black">
          <JumbotronBackdrop

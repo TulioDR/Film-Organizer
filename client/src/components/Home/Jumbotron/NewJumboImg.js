@@ -11,7 +11,7 @@ export default function NewJumboImg({ img, translate, isTranslated, big }) {
          } ${
             big
                ? "absolute ease-in-out w-full h-full filter brightness-50"
-               : `absolute w-36 h-48 mb-20`
+               : `absolute w-36 h-48 mb-28 ml-125`
          }`}
          style={big ? {} : { transform: `translateX(${distance}px)` }}
       />
