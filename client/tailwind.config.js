@@ -7,6 +7,7 @@ module.exports = {
       extend: {
          spacing: {
             125: "31.25rem",
+            180: "45rem",
          },
          width: {
             0.25: "1px",
@@ -57,6 +58,9 @@ module.exports = {
                lightDark: "#212121",
                dark: "#181818",
             },
+         },
+         brightness: {
+            40: ".40",
          },
          boxShadow: {
             material: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",

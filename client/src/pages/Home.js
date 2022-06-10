@@ -1,50 +1,15 @@
-// import Jumbotron from "../components/Home/Jumbotron/Jumbotron";
 import SubTitle from "../components/SubTitle";
 import useHomeMedia from "../hooks/useHomeMedia";
 import Media from "../components/Media/Media";
 import UpcomingMovies from "../components/Home/UpcomingMovies/UpcomingMovies";
-import { useState } from "react";
-import NewJumbotron from "../components/Home/Jumbotron/NewJumbotron";
+import Jumbotron from "../components/Home/Jumbotron/Jumbotron";
 
 export default function Home() {
-   const {
-      nowPlaying,
-      onAir,
-      upcoming,
-      isLoading,
-      currentId,
-      setCurrentId,
-      displayedMovie,
-      setDisplayedMovie,
-      backgroundImage,
-      setBackgroundImage,
-   } = useHomeMedia();
-
-   const [backdropFading, setBackdropFading] = useState(false);
-   const changeDisplayedMovie = (movie) => {
-      setCurrentId(movie.id);
-      setBackdropFading(true);
-      setDisplayedMovie(movie);
-      setTimeout(function () {
-         setBackdropFading(false);
-         setBackgroundImage(movie.backdrop_path);
-      }, 500);
-   };
+   const { nowPlaying, onAir, upcoming, isLoading } = useHomeMedia();
 
    return (
       <>
-         {/* <div className="hidden lg:block">
-            <Jumbotron
-               displayedMovie={displayedMovie}
-               nowPlaying={nowPlaying}
-               currentId={currentId}
-               backgroundImage={backgroundImage}
-               isLoading={isLoading}
-               backdropFading={backdropFading}
-               changeDisplayedMovie={changeDisplayedMovie}
-            />
-         </div> */}
-         <NewJumbotron {...{ nowPlaying }} />
+         <Jumbotron {...{ nowPlaying }} />
 
          <div className="lg:hidden">
             <SubTitle>Movies now playing on Theaters</SubTitle>

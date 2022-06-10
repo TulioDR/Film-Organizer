@@ -1,68 +1,116 @@
-import JumbotronBackdrop from "./JumbotronBackdrop";
-import JumbotronTitle from "./JumbotronTitle";
-import DisplayedMovieInfo from "./DisplayedMovieInfo";
-import LearnMoreButton from "./LearnMoreButton";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import JumboBtns from "./JumboBtns";
+import JumboImg from "./JumboImg";
+import MovieInfo from "./MovieInfo";
+import SwapMovieBtn from "./SwapMovieBtn";
 
-import MovieSkeleton from "./MovieSkeleton";
-import JumbotronMovie from "./JumbotronMovie";
-import ScrollContainer from "react-indiana-drag-scroll";
+export default function Jumbotron({ nowPlaying }) {
+   const [array, setArray] = useState([]);
+   const [isTranslated, setIsTranslated] = useState(false);
+   const [isFoward, setIsFoward] = useState(false);
 
-const skeletonArray = [
-   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-];
+   const [jumboTitle, setJumboTitle] = useState("");
+   const [jumboDate, setJumboDate] = useState("");
 
-export default function Jumbotron({
-   displayedMovie,
-   nowPlaying,
-   currentId,
-   backgroundImage,
-   isLoading,
-   backdropFading,
-   changeDisplayedMovie,
-}) {
-   if (displayedMovie) {
-      var { title, vote_average, release_date, id } = displayedMovie;
-   }
+   const foward = () => {
+      setIsFoward(true);
+      setIsTranslated(true);
+      const holaArray = [...array];
+      // First we make the second image big
+      holaArray[2].big = true;
+      setArray(holaArray);
+
+      // After the animation Ends
+      setTimeout(function () {
+         setIsTranslated(false);
+         const newArray = [...array];
+         const first = newArray.shift();
+         first.big = false;
+         newArray.push(first);
+         newArray[1].big = true;
+         setArray(newArray);
+         setJumboTitle(newArray[1].title);
+         setJumboDate(newArray[1].release_date);
+      }, 1000);
+   };
+   const backward = () => {
+      setIsFoward(false);
+      setIsTranslated(true);
+      const holaArray = [...array];
+      // make the second image small
+      holaArray[1].big = false;
+      setArray(holaArray);
+
+      // After the animation Ends
+      setTimeout(function () {
+         setIsTranslated(false);
+         const newArray = [...array];
+         const last = newArray.pop();
+         last.big = true;
+         newArray.unshift(last);
+         setArray(newArray);
+         setJumboTitle(newArray[1].title);
+         setJumboDate(newArray[1].release_date);
+      }, 1000);
+   };
+
+   useEffect(() => {
+      const newArray = [...nowPlaying];
+      for (const movie of newArray) {
+         movie.big = false;
+      }
+      const last = newArray.pop();
+      newArray.unshift(last);
+      if (newArray.length > 1) {
+         newArray[0].big = true;
+         newArray[1].big = true;
+         setJumboTitle(newArray[1].title);
+         setJumboDate(newArray[1].release_date);
+      }
+      setArray(newArray);
+   }, [nowPlaying]);
+
+   const history = useHistory();
+   const getInfo = () => history.push(`/media-details/movie/${array[1].id}`);
+
    return (
-      <div className="relative mb-4 max-h-96 rounded-lg overflow-hidden shadow-material bg-black">
-         <JumbotronBackdrop
-            img={backgroundImage}
-            title={title}
-            backdropFading={backdropFading}
-         />
+      <div className="relative rounded-md overflow-hidden h-125 max-h-125 2xl:h-180 2xl:max-h-180">
+         <div className="absolute flex items-end top-0 left-0 h-full w-full text-white">
+            <h1 className="text-2xl absolute top-4 left-10 z-10 font-medium">
+               Now playing on Theaters
+            </h1>
+            <div className="flex flex-col z-10">
+               <div className="px-10 w-125 2xl:w-180">
+                  <MovieInfo
+                     title={jumboTitle}
+                     date={jumboDate}
+                     isTranslated={isTranslated}
+                  />
+                  <JumboBtns getInfo={getInfo} isTranslated={isTranslated} />
+               </div>
+               <div className="flex space-x-2 z-50 my-5 ml-125 2xl:ml-180">
+                  <SwapMovieBtn onClick={backward} icon="chevron_left" />
+                  <SwapMovieBtn onClick={foward} icon="chevron_right" />
+               </div>
+            </div>
 
-         <div className="absolute top-0 w-full h-full text-white bg-black bg-opacity-50 p-4 overflow-hidden">
-            <div className="relative h-44">
-               <div className="text-2xl mb-20">
-                  Movies now playing on Theaters
-               </div>
-               <JumbotronTitle title={title} />
-            </div>
-            <DisplayedMovieInfo
-               voteAverage={vote_average}
-               releaseDate={release_date}
-            />
-            <div className="flex items-center">
-               <div className="w-2/5">
-                  <LearnMoreButton id={id} />
-               </div>
-               <ScrollContainer
-                  className="flex w-3/5 pb-1 space-x-2 scroller-scrollbar"
-                  vertical={false}
-                  hideScrollbars={false}
-               >
-                  {isLoading
-                     ? skeletonArray.map((n) => <MovieSkeleton key={n} />)
-                     : nowPlaying.map((movie) => (
-                          <JumbotronMovie
-                             key={movie.id}
-                             movie={movie}
-                             displayedMovieId={currentId}
-                             changeDisplayedMovie={changeDisplayedMovie}
-                          />
-                       ))}
-               </ScrollContainer>
-            </div>
+            {array.map((movie, index) => (
+               <JumboImg
+                  key={movie?.id}
+                  movie={movie}
+                  translate={
+                     isFoward
+                        ? isTranslated
+                           ? index - 3
+                           : index - 2
+                        : isTranslated
+                        ? index - 1
+                        : index - 2
+                  }
+                  isTranslated={isTranslated}
+               />
+            ))}
          </div>
       </div>
    );

@@ -7,10 +7,6 @@ export default function useHomeMedia() {
    const [upcoming, setUpcoming] = useState([]);
    const [isLoading, setIsLoading] = useState(false);
 
-   const [currentId, setCurrentId] = useState(null);
-   const [displayedMovie, setDisplayedMovie] = useState(null);
-   const [backgroundImage, setBackgroundImage] = useState(null);
-
    useEffect(() => {
       const getHomeData = async () => {
          try {
@@ -19,9 +15,6 @@ export default function useHomeMedia() {
             const data = await res.json();
 
             setNowPlaying(data[0].results);
-            setDisplayedMovie(data[0].results[0]);
-            setBackgroundImage(data[0].results[0].backdrop_path);
-            setCurrentId(data[0].results[0].id);
 
             setOnAir(data[1].results);
             setUpcoming(data[2].results);
@@ -38,11 +31,5 @@ export default function useHomeMedia() {
       onAir,
       upcoming,
       isLoading,
-      currentId,
-      setCurrentId,
-      displayedMovie,
-      setDisplayedMovie,
-      backgroundImage,
-      setBackgroundImage,
    };
 }
