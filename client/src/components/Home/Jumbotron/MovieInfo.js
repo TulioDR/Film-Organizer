@@ -1,4 +1,4 @@
-import { chageDateFormat } from "../../../utils/getDate";
+// import { chageDateFormat } from "../../../utils/getDate";
 
 export default function MovieInfo({ title, date, isTranslated }) {
    return (
@@ -15,7 +15,8 @@ export default function MovieInfo({ title, date, isTranslated }) {
                isTranslated ? "translate-y-full opacity-0" : "delay-300"
             }`}
          >
-            {chageDateFormat(date)}
+            {date}
+            {/* {chageDateFormat(date)} */}
          </p>
       </div>
    );

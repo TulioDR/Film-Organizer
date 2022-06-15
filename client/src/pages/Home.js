@@ -2,14 +2,14 @@ import SubTitle from "../components/SubTitle";
 import useHomeMedia from "../hooks/useHomeMedia";
 import Media from "../components/Media/Media";
 import UpcomingMovies from "../components/Home/UpcomingMovies/UpcomingMovies";
-import Jumbotron from "../components/Home/Jumbotron/Jumbotron";
+import TrNewJumbotron from "../components/Home/Jumbotron/TrNewJumbotron";
 
 export default function Home() {
    const { nowPlaying, onAir, upcoming, isLoading } = useHomeMedia();
 
    return (
       <>
-         <Jumbotron {...{ nowPlaying }} />
+         <TrNewJumbotron {...{ nowPlaying }} />
 
          <div className="lg:hidden">
             <SubTitle>Movies now playing on Theaters</SubTitle>

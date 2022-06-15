@@ -97,7 +97,7 @@ export default function Jumbotron({ nowPlaying }) {
 
             {array.map((movie, index) => (
                <JumboImg
-                  key={movie?.id}
+                  key={index}
                   movie={movie}
                   translate={
                      isFoward
