@@ -31,6 +31,11 @@ code {
       monospace;
 }
 
+// Scroller
+.hide-scrollbar::-webkit-scrollbar {
+   display: none;
+}
+
 @media (min-width: 1024px) {
    .article:hover ~ article {
       transform: translateX(80px);

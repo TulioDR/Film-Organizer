@@ -9,9 +9,8 @@ import { motion } from "framer-motion";
 export default function TrJumbotron({ nowPlaying }) {
    const [array, setArray] = useState([]);
    const [isFoward, setIsFoward] = useState(false);
-
-   // const [jumboTitle, setJumboTitle] = useState("");
-   // const [jumboDate, setJumboDate] = useState("");
+   const [selectedMovie, setSelectedMovie] = useState(null);
+   const [isAnimating, setIsAnimating] = useState(false);
 
    const history = useHistory();
    const getInfo = () => history.push(`/media-details/movie/${array[1].id}`);
@@ -22,6 +21,11 @@ export default function TrJumbotron({ nowPlaying }) {
       const first = newArray.shift();
       newArray.push(first);
       setArray(newArray);
+      setIsAnimating(true);
+      setTimeout(() => {
+         setSelectedMovie(newArray[0]);
+         setIsAnimating(false);
+      }, 900);
    };
    const backward = () => {
       setIsFoward(false);
@@ -29,11 +33,17 @@ export default function TrJumbotron({ nowPlaying }) {
       const last = newArray.pop();
       newArray.unshift(last);
       setArray(newArray);
+      setIsAnimating(true);
+      setTimeout(() => {
+         setSelectedMovie(newArray[0]);
+         setIsAnimating(false);
+      }, 900);
    };
 
    useEffect(() => {
       const newArray = nowPlaying;
       setArray(newArray);
+      setSelectedMovie(newArray[0]);
    }, [nowPlaying]);
 
    return (
@@ -42,8 +52,11 @@ export default function TrJumbotron({ nowPlaying }) {
             Now playing on Theaters
          </h1>
          <div className="px-10 w-125 2xl:w-180 mb-24 z-20">
-            <MovieInfo title={"Title"} date={"29 de diciembre"} />
-            <JumboBtns getInfo={getInfo} />
+            <MovieInfo
+               selectedMovie={selectedMovie}
+               isAnimating={isAnimating}
+            />
+            <JumboBtns getInfo={getInfo} isAnimating={isAnimating} />
          </div>
          <div className="flex space-x-2 z-20 my-5">
             <SwapMovieBtn onClick={backward} icon="chevron_left" />

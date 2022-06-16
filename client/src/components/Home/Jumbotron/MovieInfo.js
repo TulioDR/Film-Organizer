@@ -1,22 +1,22 @@
-// import { chageDateFormat } from "../../../utils/getDate";
+import { chageDateFormat } from "../../../utils/getDate";
 
-export default function MovieInfo({ title, date, isTranslated }) {
+export default function MovieInfo({ selectedMovie, isAnimating }) {
+   // const { title, releaseDate } = selectedMovie;
    return (
       <div className="overflow-hidden">
          <h1
             className={`text-5xl transform transition-all font-medium duration-500 ease-in-out ${
-               isTranslated ? "translate-y-full opacity-0" : ""
+               isAnimating ? "translate-y-full opacity-0" : ""
             }`}
          >
-            {title}
+            {selectedMovie?.title}
          </h1>
          <p
             className={`text-sm mt-2 transform transition-all duration-200 ease-in-out ${
-               isTranslated ? "translate-y-full opacity-0" : "delay-300"
+               isAnimating ? "translate-y-full opacity-0" : "delay-300"
             }`}
          >
-            {date}
-            {/* {chageDateFormat(date)} */}
+            {chageDateFormat(selectedMovie?.release_date)}
          </p>
       </div>
    );
