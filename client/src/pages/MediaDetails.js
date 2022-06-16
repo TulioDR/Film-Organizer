@@ -18,6 +18,7 @@ import InfoList from "../components/MediaDetails/InfoList";
 import Media from "../components/Media/Media";
 import Subtitle from "../components/MediaDetails/Subtitle";
 import Header from "../components/MediaDetails/Header/Header";
+import NewHeader from "../components/MediaDetails/NewHeader";
 
 export default function MediaDetails() {
    const { lists } = useSelector((state) => state.lists);
@@ -49,7 +50,8 @@ export default function MediaDetails() {
    ) : (
       <>
          <section className="w-full flex flex-col">
-            <Header {...{ media, isMovie, isSaved, checkUser }} />
+            <NewHeader {...{ media, isMovie }} />
+            {/* <Header {...{ media, isMovie, isSaved, checkUser }} />
             <div className="flex flex-col">
                <div className="overflow-x-auto mt-5 lg:flex lg:space-x-3 space-y-3 lg:space-y-0 moreinfo-scrollbar py-3">
                   <InfoList
@@ -91,7 +93,7 @@ export default function MediaDetails() {
                   type={isMovie ? "movie" : "tv"}
                   isMovie={isMovie}
                />
-            </div>
+            </div> */}
          </section>
          <AddToListModal
             {...{ showSaveToListModal, closeSaveToListModal, currentData }}
