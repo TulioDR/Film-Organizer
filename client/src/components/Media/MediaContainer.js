@@ -6,7 +6,7 @@ export default function MediaContainer({ to, openNewTab, children }) {
          to={to}
          target={openNewTab && "_blank"}
          rel="noreferrer"
-         className="relative min-w-24 w-24 md:min-w-36 md:w-36 rounded-md overflow-hidden text-white shadow-material"
+         className="relative min-w-24 w-24 md:min-w-36 md:w-36 text-white"
       >
          {children}
       </Link>
