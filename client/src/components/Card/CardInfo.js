@@ -6,8 +6,8 @@ export default function CardInfo({ voteAverage, overview }) {
                <span className="material-icons text-yellow-500">star_rate</span>
                <span className="text-xl font-light">{voteAverage}</span>
             </div>
-            <div className="text-lg font-medium mb-1">Summary</div>
-            <p className="text-justify text-sm leading-tight text-gray-600 dark:text-gray-400">
+            <div className="text-sm font-medium mb-1">Summary</div>
+            <p className="text-sm leading-tight text-gray-600 dark:text-gray-400">
                {overview}
             </p>
          </div>

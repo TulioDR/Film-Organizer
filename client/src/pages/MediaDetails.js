@@ -1,8 +1,3 @@
-import BudgetAndRevenue from "../components/MediaDetails/BudgetAndRevenue";
-import Seasons from "../components/MediaDetails/Seasons";
-import Trailers from "../components/MediaDetails/Trailers";
-import People from "../components/MediaDetails/People";
-
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -14,11 +9,26 @@ import UserWarning from "../components/Modals/UserWarning";
 import useSaveToList from "../hooks/useSaveToList";
 import useBookmark from "../hooks/useBookmark";
 
-import InfoList from "../components/MediaDetails/InfoList";
-import Media from "../components/Media/Media";
-import Subtitle from "../components/MediaDetails/Subtitle";
-import Header from "../components/MediaDetails/Header/Header";
-import NewHeader from "../components/MediaDetails/NewHeader";
+import { useState } from "react";
+import Poster from "../components/MediaDetails/Poster";
+import Tabs from "../components/MediaDetails/Tabs/Tabs";
+import Overview from "../components/MediaDetails/Tabs/Overview";
+import Similar from "../components/MediaDetails/Tabs/Similar";
+import CastAndCrew from "../components/MediaDetails/Tabs/CastAndCrew";
+import Trailers from "../components/MediaDetails/Tabs/Trailers";
+
+import { AnimatePresence } from "framer-motion";
+import SaveButton from "../components/MediaDetails/SaveButton";
+import Score from "../components/MediaDetails/Score";
+import InfoBar from "../components/MediaDetails/InfoBar";
+
+const details = [
+   "Overview",
+   // "Seasons",
+   "Trailers & More",
+   "Cast & Crew",
+   "Similar",
+];
 
 export default function MediaDetails() {
    const { lists } = useSelector((state) => state.lists);
@@ -26,6 +36,8 @@ export default function MediaDetails() {
    const [media, isMovie, isLoading] = useMediaDetails();
 
    const { id, poster_path, title, name } = media;
+
+   console.log(media);
 
    const [isSaved] = useBookmark(id, mediaType, lists);
 
@@ -43,58 +55,77 @@ export default function MediaDetails() {
       else openWarning();
    };
 
-   const { production_companies, spoken_languages, budget, revenue } = media;
-   const { networks, created_by, videos, seasons, similar, credits } = media;
+   const { release_dates, content_ratings, tagline, overview, videos } = media;
+   const rating = release_dates?.results || content_ratings?.results;
+
+   const [selected, setSelected] = useState(0);
+
    return isLoading ? (
       <Loading />
    ) : (
       <>
-         <section className="w-full flex flex-col">
-            <NewHeader {...{ media, isMovie }} />
-            {/* <Header {...{ media, isMovie, isSaved, checkUser }} />
-            <div className="flex flex-col">
-               <div className="overflow-x-auto mt-5 lg:flex lg:space-x-3 space-y-3 lg:space-y-0 moreinfo-scrollbar py-3">
-                  <InfoList
-                     list={production_companies}
-                     subtitle="Production Companies"
+         <div
+            //Hcer una clase que solo aplique esta altura desde md
+            style={{ height: "calc(100vh - 7.5rem)" }}
+            className="md:flex w-full md:space-x-12"
+         >
+            <div className="relative h-full">
+               <Poster src={media.poster_path} />
+               <SaveButton onClick={checkUser} isSaved={isSaved} />
+            </div>
+            <div className="flex-1 flex flex-col pt-5 overflow-hidden">
+               <h1 className="text-4xl 2xl:text-5xl font-medium">
+                  {media.title || media.name}
+               </h1>
+               <div className="flex items-center justify-between mt-2 text-gray-500 dark:text-gray-400">
+                  <InfoBar
+                     date={media.release_date || media.first_air_date}
+                     runtime={media.runtime}
+                     rating={rating}
+                     isMovie={isMovie}
                   />
-                  <InfoList
-                     list={spoken_languages}
-                     subtitle="Spoken Lenguages"
-                  />
-                  {isMovie ? (
-                     <BudgetAndRevenue budget={budget} revenue={revenue} />
-                  ) : (
-                     <InfoList list={networks} subtitle="Networks" />
-                  )}
+                  <Score media={media} />
                </div>
-
-               {!isMovie && (
-                  <>
-                     <Subtitle>TV Show creators</Subtitle>
-                     <People people={created_by} type="Show Creators" />
-                     <Subtitle>Seasons</Subtitle>
-                     <Seasons seasons={seasons} showID={id} />
-                  </>
-               )}
-
-               <Subtitle>Trailers</Subtitle>
-               <Trailers trailers={videos} />
-
-               <Subtitle>Cast Members</Subtitle>
-               <People people={credits?.cast} type="Cast Members" />
-
-               <Subtitle>Crew Members</Subtitle>
-               <People people={credits?.crew} type="Crew Members" />
-
-               <Subtitle>Similar {isMovie ? "Movies" : "TV Shows"}</Subtitle>
-               <Media
-                  media={similar?.results}
-                  type={isMovie ? "movie" : "tv"}
-                  isMovie={isMovie}
-               />
-            </div> */}
-         </section>
+               <div className="mt-5 flex-1 flex flex-col overflow-y-auto">
+                  <Tabs
+                     details={details}
+                     selected={selected}
+                     setSelected={setSelected}
+                  />
+                  <div className="flex-1 overflow-y-auto card-scrollbar">
+                     <AnimatePresence>
+                        {selected === 0 && (
+                           <Overview
+                              tagline={tagline}
+                              overview={overview}
+                              genres={media.genres}
+                              isMovie={isMovie}
+                              media={media}
+                           />
+                        )}
+                        {selected === 1 && (
+                           <Trailers trailers={videos} isMovie={isMovie} />
+                        )}
+                        {selected === 2 && (
+                           <CastAndCrew
+                              cast={media.credits?.cast}
+                              crew={media.credits?.crew}
+                              type="Cast Members"
+                              isMovie={isMovie}
+                           />
+                        )}
+                        {selected === 3 && (
+                           <Similar
+                              similar={media.similar?.results}
+                              type={isMovie ? "movie" : "tv"}
+                              isMovie={isMovie}
+                           />
+                        )}
+                     </AnimatePresence>
+                  </div>
+               </div>
+            </div>
+         </div>
          <AddToListModal
             {...{ showSaveToListModal, closeSaveToListModal, currentData }}
          />

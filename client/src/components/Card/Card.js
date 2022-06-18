@@ -15,6 +15,8 @@ export default function Card({
    mediaType,
    openSaveToListModal,
    openWarning,
+   setSelectedId,
+   setSelectedImg,
 }) {
    const { id, title, name, poster_path, backdrop_path } = cardInfo;
    const { release_date, first_air_date, vote_average, overview } = cardInfo;
@@ -36,7 +38,7 @@ export default function Card({
    };
 
    return (
-      <CardContainer>
+      <CardContainer id={id}>
          <CardPoster posterPath={poster_path} toggleInfo={toggleInfo} />
          <CardBack {...{ showInfo }}>
             <CardBackPoster
@@ -50,6 +52,10 @@ export default function Card({
                overview={overview || "N/A"}
             />
             <CardButtons
+               setSelectedId={setSelectedId}
+               setSelectedImg={setSelectedImg}
+               id={id}
+               poster_path={poster_path}
                isSaved={isSaved}
                getMoreInfo={getMoreInfo}
                checkUser={checkUser}

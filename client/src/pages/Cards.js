@@ -14,6 +14,9 @@ import useSaveToList from "../hooks/useSaveToList";
 import UserWarning from "../components/Modals/UserWarning";
 import NoCardsFounded from "../components/Card/NoCardsFounded";
 import useUserWarning from "../hooks/useUserWarning";
+import { useState } from "react";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+import { getPoster } from "../utils/getPosters";
 
 export default function Cards() {
    const { lists } = useSelector((state) => state.lists);
@@ -34,6 +37,13 @@ export default function Cards() {
       window.scrollTo({ top: 0 });
    }, []);
 
+   const [selectedId, setSelectedId] = useState(null);
+   const [selectedImg, setSelectedImg] = useState(null);
+
+   const setEverything = () => {
+      setSelectedId(null);
+      setSelectedImg(null);
+   };
    return (
       <>
          <Title>{title}</Title>
@@ -41,18 +51,38 @@ export default function Cards() {
             <Loading />
          ) : (
             <>
-               <CardsGrid>
-                  {cards?.map((cardInfo, index) => (
-                     <Card
-                        key={index}
-                        lists={lists}
-                        cardInfo={cardInfo}
-                        mediaType={mediaType}
-                        openSaveToListModal={openSaveToListModal}
-                        openWarning={openWarning}
-                     />
-                  )) || <NoCardsFounded {...{ mediaType }} />}
-               </CardsGrid>
+               <AnimateSharedLayout>
+                  <CardsGrid>
+                     {cards?.map((cardInfo, index) => (
+                        <Card
+                           key={index}
+                           lists={lists}
+                           cardInfo={cardInfo}
+                           mediaType={mediaType}
+                           openSaveToListModal={openSaveToListModal}
+                           openWarning={openWarning}
+                           setSelectedId={setSelectedId}
+                           setSelectedImg={setSelectedImg}
+                        />
+                     )) || <NoCardsFounded {...{ mediaType }} />}
+                  </CardsGrid>
+                  <AnimatePresence>
+                     {selectedId && (
+                        <motion.div
+                           layoutId={selectedId}
+                           onClick={setEverything}
+                           className="fixed z-50 top-20 left-66"
+                           style={{ height: "calc(100vh - 7.5rem)" }}
+                           transition={{ duration: 0.8 }}
+                        >
+                           <motion.img
+                              src={getPoster(selectedImg, "md", true)}
+                              className="rounded-lg h-full"
+                           />
+                        </motion.div>
+                     )}
+                  </AnimatePresence>
+               </AnimateSharedLayout>
                {isLoadingMore ? (
                   <div className="w-full h-28 flex justify-center items-center">
                      <Loading />

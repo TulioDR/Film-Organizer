@@ -47,7 +47,7 @@ export default function TrJumbotron({ nowPlaying }) {
    }, [nowPlaying]);
 
    return (
-      <div className="relative flex items-end rounded-md overflow-x-hidden h-125 max-h-125 2xl:h-180 2xl:max-h-180 text-white">
+      <div className="relative bg-black flex items-end rounded-md overflow-x-hidden h-125 max-h-125 2xl:h-180 2xl:max-h-180 text-white">
          <h1 className="text-2xl absolute top-4 left-10 font-medium z-20">
             Now playing on Theaters
          </h1>

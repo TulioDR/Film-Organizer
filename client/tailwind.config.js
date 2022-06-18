@@ -42,6 +42,9 @@ module.exports = {
          margin: {
             62: "15.5rem",
          },
+         left: {
+            66: "16.5rem",
+         },
          colors: {
             purple: {
                DEFAULT: "#5B21CE",

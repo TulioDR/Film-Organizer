@@ -5,7 +5,7 @@ export default function MovieInfo({ selectedMovie, isAnimating }) {
    return (
       <div className="overflow-hidden">
          <h1
-            className={`text-5xl transform transition-all font-medium duration-500 ease-in-out ${
+            className={`text-5xl 2xl:text-7xl transform transition-all font-medium duration-500 ease-in-out ${
                isAnimating ? "translate-y-full opacity-0" : ""
             }`}
          >
