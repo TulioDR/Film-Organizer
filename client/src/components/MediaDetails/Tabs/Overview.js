@@ -91,7 +91,7 @@ export default function Overview({ isMovie, media }) {
                   <Name>Spoken Languages</Name>
                   <Value>
                      {spoken_languages?.map((language, index) => (
-                        <span key={language.id} className="mr-2">
+                        <span key={language.iso_639_1} className="mr-2">
                            {language.english_name}
                            {checkCommas(spoken_languages, index)}
                         </span>
@@ -122,7 +122,7 @@ export default function Overview({ isMovie, media }) {
                         <Name>Networks</Name>
                         <Value>
                            {networks?.map((network, index) => (
-                              <span key={network.id}>
+                              <span key={network.id} className="mr-2">
                                  {network.name}
                                  {checkCommas(networks, index)}
                               </span>

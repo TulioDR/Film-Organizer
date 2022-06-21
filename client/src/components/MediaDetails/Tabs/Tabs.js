@@ -1,10 +1,10 @@
 import { motion, AnimateSharedLayout } from "framer-motion";
 
-export default function Tabs({ details, selected, setSelected }) {
+export default function Tabs({ tabs, selected, setSelected }) {
    return (
       <AnimateSharedLayout transition={{ duration: 0.5 }}>
          <div className="flex justify-between border-b border-gray-500">
-            {details.map((detail, index) => (
+            {tabs.map((detail, index) => (
                <motion.div
                   key={index}
                   className={`${

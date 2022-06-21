@@ -46,7 +46,7 @@ export default function Cards() {
    };
    return (
       <>
-         <Title>{title}</Title>
+         <Title selectedId={selectedId}>{title}</Title>
          {isLoading ? (
             <Loading />
          ) : (
@@ -61,19 +61,21 @@ export default function Cards() {
                            mediaType={mediaType}
                            openSaveToListModal={openSaveToListModal}
                            openWarning={openWarning}
+                           selectedId={selectedId}
                            setSelectedId={setSelectedId}
                            setSelectedImg={setSelectedImg}
                         />
                      )) || <NoCardsFounded {...{ mediaType }} />}
                   </CardsGrid>
+
                   <AnimatePresence>
                      {selectedId && (
                         <motion.div
                            layoutId={selectedId}
                            onClick={setEverything}
-                           className="fixed z-50 top-20 left-66"
+                           className="fixed z-30 top-20 left-66"
                            style={{ height: "calc(100vh - 7.5rem)" }}
-                           transition={{ duration: 0.8 }}
+                           transition={{ duration: 0.6 }}
                         >
                            <motion.img
                               src={getPoster(selectedImg, "md", true)}

@@ -1,26 +1,20 @@
-import SubTitle from "../components/SubTitle";
 import useHomeMedia from "../hooks/useHomeMedia";
-import Media from "../components/Media/Media";
+import MovieJumbotron from "../components/Home/Jumbotrons/MovieJumbotron/MovieJumbotron";
+import TvJumbotron from "../components/Home/Jumbotrons/TvJumbotron/TvJumbotron";
 import UpcomingMovies from "../components/Home/UpcomingMovies/UpcomingMovies";
-import TrNewJumbotron from "../components/Home/Jumbotron/TrNewJumbotron";
 
 export default function Home() {
    const { nowPlaying, onAir, upcoming, isLoading } = useHomeMedia();
-
    return (
-      <>
-         <TrNewJumbotron {...{ nowPlaying }} />
+      <div className="w-full flex flex-col space-y-10">
+         <MovieJumbotron {...{ nowPlaying }} />
 
-         <div className="lg:hidden">
-            <SubTitle>Movies now playing on Theaters</SubTitle>
-            <Media media={nowPlaying} type="movie" isLoading={isLoading} />
+         <TvJumbotron onAir={onAir} />
+
+         <div>
+            <h2 className="text-2xl font-medium">Upcoming Movies</h2>
+            <UpcomingMovies movies={upcoming} isLoading={isLoading} />
          </div>
-
-         <SubTitle>TV Series on Air</SubTitle>
-         <Media media={onAir} type="tv" isLoading={isLoading} />
-
-         <SubTitle>Upcoming Movies</SubTitle>
-         <UpcomingMovies movies={upcoming} isLoading={isLoading} />
-      </>
+      </div>
    );
 }

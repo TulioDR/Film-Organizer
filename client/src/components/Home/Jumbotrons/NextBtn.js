@@ -1,4 +1,4 @@
-export default function SwapMovieBtn({ onClick, icon }) {
+export default function NextBtn({ onClick, icon }) {
    return (
       <button
          onClick={onClick}

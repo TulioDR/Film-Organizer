@@ -3,7 +3,10 @@ import CardPoster from "./CardPoster";
 import CardBack from "./CardBack";
 import CardBackPoster from "./CardBackPoster";
 import CardInfo from "./CardInfo";
-import CardButtons from "./CardButtons";
+import CardOverview from "./CardOverview";
+import CardBtnsContainer from "./CardBtnsContainer";
+import CardMoreInfoBtn from "./CardMoreInfoBtn";
+import CardBookmark from "./CardBookmark";
 
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -15,6 +18,7 @@ export default function Card({
    mediaType,
    openSaveToListModal,
    openWarning,
+   selectedId,
    setSelectedId,
    setSelectedImg,
 }) {
@@ -38,28 +42,30 @@ export default function Card({
    };
 
    return (
-      <CardContainer id={id}>
+      <CardContainer selectedId={selectedId} id={id}>
          <CardPoster posterPath={poster_path} toggleInfo={toggleInfo} />
          <CardBack {...{ showInfo }}>
             <CardBackPoster
-               title={title || name}
                backPoster={backdrop_path}
-               year={release_date || first_air_date}
                toggleInfo={toggleInfo}
             />
             <CardInfo
-               voteAverage={vote_average || "N/A"}
-               overview={overview || "N/A"}
+               title={title || name}
+               year={release_date || first_air_date}
+               voteAverage={vote_average}
             />
-            <CardButtons
-               setSelectedId={setSelectedId}
-               setSelectedImg={setSelectedImg}
-               id={id}
-               poster_path={poster_path}
-               isSaved={isSaved}
-               getMoreInfo={getMoreInfo}
-               checkUser={checkUser}
-            />
+            <CardOverview overview={overview || "N/A"} />
+            <CardBtnsContainer>
+               <CardMoreInfoBtn
+                  setSelectedId={setSelectedId}
+                  setSelectedImg={setSelectedImg}
+                  id={id}
+                  poster_path={poster_path}
+                  getMoreInfo={getMoreInfo}
+                  toggleInfo={toggleInfo}
+               />
+               <CardBookmark isSaved={isSaved} checkUser={checkUser} />
+            </CardBtnsContainer>
          </CardBack>
       </CardContainer>
    );

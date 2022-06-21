@@ -1,9 +1,9 @@
 import { getPoster } from "../../utils/getPosters";
 
-export default function Poster({ src }) {
+export default function Poster({ src, posterSize }) {
    return (
       <img
-         src={getPoster(src, "lg", true)}
+         src={getPoster(src, posterSize, true)}
          alt="poster"
          className="rounded-lg h-full shadow-material"
       />

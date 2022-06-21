@@ -41,3 +41,9 @@ code {
       transform: translateX(80px);
    }
 }
+
+@media (min-width: 768px) {
+   .media-details-height {
+      height: calc(100vh - 7.5rem);
+   }
+}

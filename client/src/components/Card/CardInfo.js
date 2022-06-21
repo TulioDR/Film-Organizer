@@ -1,15 +1,15 @@
-export default function CardInfo({ voteAverage, overview }) {
+export default function CardInfo({ year, title, voteAverage }) {
    return (
-      <div className="flex-1 dark:text-white overflow-y-hidden mb-2">
-         <div className="px-4 pt-2 relative h-full overflow-y-auto card-scrollbar">
-            <div className="absolute top-2 right-4 flex items-center">
-               <span className="material-icons text-yellow-500">star_rate</span>
-               <span className="text-xl font-light">{voteAverage}</span>
+      <div className="bg-gray-200 dark:bg-gray-dark rounded-xl px-4 pt-4 transform -translate-y-4">
+         <h4 className="leading-5">{title}</h4>
+         <div className="flex justify-between items-center text-gray-500 dark:text-gray-400 text-sm">
+            <span className="">{year ? year.substr(0, 4) : "N/A"}</span>
+            <div className="flex items-center space-x-1">
+               <span className="material-icons text-yellow-500 text-sm">
+                  star_rate
+               </span>
+               <span>{voteAverage || "N/A"}</span>
             </div>
-            <div className="text-sm font-medium mb-1">Summary</div>
-            <p className="text-sm leading-tight text-gray-600 dark:text-gray-400">
-               {overview}
-            </p>
          </div>
       </div>
    );

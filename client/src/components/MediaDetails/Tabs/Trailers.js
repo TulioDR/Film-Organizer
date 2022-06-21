@@ -8,7 +8,7 @@ export default function Trailers({ trailers, isMovie }) {
                   target="_blank"
                   rel="noreferrer"
                >
-                  <div className="aspect-w-16 aspect-h-8">
+                  <div className="aspect-w-16 aspect-h-9">
                      <img
                         src={`http://i3.ytimg.com/vi/${trailer.key}/hqdefault.jpg`}
                         alt={trailer.name}

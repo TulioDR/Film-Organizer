@@ -1,26 +1,24 @@
-import { getPoster } from "../../../utils/getPosters";
 import { motion } from "framer-motion";
+import { getPoster } from "../../../../utils/getPosters";
 
-export default function TrNewJumboImg({ movie, index, isFoward }) {
+export default function MovieJumboPoster({ movie, index, isFoward }) {
    const distance = index * 144 + index * 15 - 144 - 15;
    const firstOne = index === 0;
    const lastOne = index === 19;
-
-   const backgroundImage = {
-      width: "100%",
-      height: "100%",
-      bottom: 0,
-      left: 0,
-      x: 0,
-      filter: "brightness(0.4)",
-   };
    return (
       <motion.img
          layout
          initial={firstOne ? {} : { x: distance + 1000 }}
          animate={
             firstOne
-               ? backgroundImage
+               ? {
+                    width: "100%",
+                    height: "100%",
+                    bottom: 0,
+                    left: 0,
+                    x: 0,
+                    filter: "brightness(0.4)",
+                 }
                : {
                     x: distance,
                  }
