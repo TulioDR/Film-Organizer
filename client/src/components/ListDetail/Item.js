@@ -1,5 +1,6 @@
 import { getPoster } from "../../utils/getPosters";
 import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Item({ items, media, dispatch, openDelete }) {
    const history = useHistory();
@@ -12,7 +13,8 @@ export default function Item({ items, media, dispatch, openDelete }) {
    };
 
    return (
-      <article
+      <motion.article
+         layoutId={media.item_id}
          onClick={openDelete ? pushItem : getDetails}
          className="relative rounded-md overflow-hidden cursor-pointer group"
       >
@@ -35,6 +37,6 @@ export default function Item({ items, media, dispatch, openDelete }) {
          >
             <span className="material-icons">close</span>
          </div>
-      </article>
+      </motion.article>
    );
 }

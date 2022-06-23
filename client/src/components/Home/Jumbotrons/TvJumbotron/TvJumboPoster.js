@@ -10,6 +10,7 @@ export default function TvJumboPoster({ show, index, isFoward }) {
          layout
          src={getPoster(show.poster_path, "md", true)}
          alt={show.name}
+         initial={firstOne ? {} : { x: distance + 1000 }}
          animate={
             firstOne
                ? {

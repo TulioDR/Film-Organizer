@@ -4,6 +4,7 @@ export default function CardsGrid({ children }) {
    const { sidebarExtended } = useSidebarExtendedContext();
    return (
       <motion.div
+         layout
          exit={{ y: 200, opacity: 0 }}
          className={`grid gap-5 sm:grid-cols-2 ${
             sidebarExtended

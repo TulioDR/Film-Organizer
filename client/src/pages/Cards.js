@@ -15,8 +15,8 @@ import UserWarning from "../components/Modals/UserWarning";
 import NoCardsFounded from "../components/Card/NoCardsFounded";
 import useUserWarning from "../hooks/useUserWarning";
 import { useState } from "react";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
-import { getPoster } from "../utils/getPosters";
+import { AnimateSharedLayout } from "framer-motion";
+import TransitionPoster from "../components/PageTransitions/TransitionPoster";
 
 export default function Cards() {
    const { lists } = useSelector((state) => state.lists);
@@ -40,10 +40,6 @@ export default function Cards() {
    const [selectedId, setSelectedId] = useState(null);
    const [selectedImg, setSelectedImg] = useState(null);
 
-   const setEverything = () => {
-      setSelectedId(null);
-      setSelectedImg(null);
-   };
    return (
       <>
          <Title selectedId={selectedId}>{title}</Title>
@@ -68,22 +64,10 @@ export default function Cards() {
                      )) || <NoCardsFounded {...{ mediaType }} />}
                   </CardsGrid>
 
-                  <AnimatePresence>
-                     {selectedId && (
-                        <motion.div
-                           layoutId={selectedId}
-                           onClick={setEverything}
-                           className="fixed z-30 top-20 left-66"
-                           style={{ height: "calc(100vh - 7.5rem)" }}
-                           transition={{ duration: 0.6 }}
-                        >
-                           <motion.img
-                              src={getPoster(selectedImg, "md", true)}
-                              className="rounded-lg h-full"
-                           />
-                        </motion.div>
-                     )}
-                  </AnimatePresence>
+                  <TransitionPoster
+                     selectedId={selectedId}
+                     selectedImg={selectedImg}
+                  />
                </AnimateSharedLayout>
                {isLoadingMore ? (
                   <div className="w-full h-28 flex justify-center items-center">

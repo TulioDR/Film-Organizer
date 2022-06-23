@@ -1,16 +1,16 @@
-import CardContainer from "./CardContainer";
-import CardPoster from "./CardPoster";
-import CardBack from "./CardBack";
-import CardBackPoster from "./CardBackPoster";
-import CardInfo from "./CardInfo";
-import CardOverview from "./CardOverview";
-import CardBtnsContainer from "./CardBtnsContainer";
-import CardMoreInfoBtn from "./CardMoreInfoBtn";
-import CardBookmark from "./CardBookmark";
+import CardContainer from "./CardParts/CardContainer";
+import CardPoster from "./CardParts/CardPoster";
+import CardBack from "./CardParts/CardBack";
+import CardBackPoster from "./CardParts/CardBackPoster";
+import CardInfo from "./CardParts/CardInfo";
+import CardOverview from "./CardParts/CardOverview";
+import CardBtnsContainer from "./CardParts/CardBtnsContainer";
+import CardMoreInfoBtn from "./CardParts/CardMoreInfoBtn";
+import CardBookmark from "./CardParts/CardBookmark";
 
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import useBookmark from "../../hooks/useBookmark";
+import useGetMediaDetails from "../../hooks/useGetMediaDetails";
 
 export default function Card({
    lists,
@@ -30,9 +30,16 @@ export default function Card({
 
    const [isSaved] = useBookmark(id, mediaType, lists);
 
-   const history = useHistory();
-   const getMoreInfo = () => {
-      history.push(`/media-details/${mediaType}/${id}`);
+   const [getMoreInfo] = useGetMediaDetails({
+      type: mediaType,
+      selected: cardInfo,
+   });
+
+   const animatedGetMoreInfo = () => {
+      toggleInfo();
+      setSelectedImg(poster_path);
+      setTimeout(() => setSelectedId(id), 300);
+      setTimeout(getMoreInfo, 900);
    };
 
    const user = JSON.parse(localStorage.getItem("profile"));
@@ -42,7 +49,7 @@ export default function Card({
    };
 
    return (
-      <CardContainer selectedId={selectedId} id={id}>
+      <CardContainer selectedId={selectedId} layoutId={id}>
          <CardPoster posterPath={poster_path} toggleInfo={toggleInfo} />
          <CardBack {...{ showInfo }}>
             <CardBackPoster
@@ -56,14 +63,7 @@ export default function Card({
             />
             <CardOverview overview={overview || "N/A"} />
             <CardBtnsContainer>
-               <CardMoreInfoBtn
-                  setSelectedId={setSelectedId}
-                  setSelectedImg={setSelectedImg}
-                  id={id}
-                  poster_path={poster_path}
-                  getMoreInfo={getMoreInfo}
-                  toggleInfo={toggleInfo}
-               />
+               <CardMoreInfoBtn animatedGetMoreInfo={animatedGetMoreInfo} />
                <CardBookmark isSaved={isSaved} checkUser={checkUser} />
             </CardBtnsContainer>
          </CardBack>

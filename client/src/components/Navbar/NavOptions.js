@@ -9,7 +9,11 @@ export default function NavOptions() {
    return (
       <div className="flex">
          <ThemeButton />
-         {user ? <UserLogo /> : <LogButton onClick={login} text="Log in" />}
+         {user ? (
+            <UserLogo user={user} />
+         ) : (
+            <LogButton onClick={login} text="Log in" />
+         )}
          <LogButton
             onClick={user ? logout : login}
             text={user ? "Log out" : "Sign up"}

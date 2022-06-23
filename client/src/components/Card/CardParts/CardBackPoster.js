@@ -1,4 +1,4 @@
-import { getPoster } from "../../utils/getPosters";
+import { getPoster } from "../../../utils/getPosters";
 // import CardBookmark from "./CardBookmark";
 
 export default function CardBackPoster({ backPoster, toggleInfo }) {

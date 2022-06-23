@@ -3,21 +3,17 @@ import CreatedAt from "../components/ListDetail/CreatedAt";
 import DeleteItemsModal from "../components/Modals/DeleteItemsModal";
 
 import Title from "../components/Title";
-import SortBy from "../components/ListDetail/SortBy";
-import Type from "../components/ListDetail/Type";
 
 import { getList } from "../actions/lists";
 
-import { useState, useEffect, useReducer, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 
-const initialState = {
-   items: [],
-   itemsToDelete: [],
-   showModal: false,
-   openDelete: false,
-};
+import { AnimateSharedLayout } from "framer-motion";
+import TransitionPoster from "../components/PageTransitions/TransitionPoster";
+import ListItem from "../components/ListDetail/ListItem";
+import FilterPill from "../components/ListDetail/FilterPill";
 
 const itemsReducer = (state, action) => {
    switch (action.type) {
@@ -29,32 +25,6 @@ const itemsReducer = (state, action) => {
                (e) => e.selected === true
             ),
          };
-      case "OPEN_DELETE":
-         return {
-            ...state,
-            openDelete: true,
-         };
-      case "CLOSE_DELETE":
-         for (const item of action.payload) {
-            item.selected = false;
-         }
-         return {
-            ...state,
-            openDelete: false,
-            itemsToDelete: [],
-            items: action.payload,
-         };
-      case "OPEN_MODAL":
-         console.log("Open Modal dispath");
-         return {
-            ...state,
-            showModal: true,
-         };
-      case "CLOSE_MODAL":
-         return {
-            ...state,
-            showModal: false,
-         };
       default:
          return state;
    }
@@ -63,81 +33,100 @@ const itemsReducer = (state, action) => {
 export default function ListDetails() {
    const { list } = useSelector((state) => state.lists);
 
-   const [state, dispatch] = useReducer(itemsReducer, initialState);
-
-   const { items, itemsToDelete, showModal, openDelete } = state;
-
-   const [movies, setMovies] = useState([]);
-   const [tvSeries, setTvSeries] = useState([]);
-   const [ascending, setAscending] = useState([]);
-   const [descending, setDescending] = useState([]);
-   const [byType, setByType] = useState(false);
-   const [subTitle, setSubTitle] = useState("Newest to Oldest");
-
    const dispatchList = useDispatch();
    const { id } = useParams();
 
-   const closeModal = () => {
-      dispatch({ type: "CLOSE_MODAL" });
-   };
+   const [filteredItems, setFilteredItems] = useState([]);
+   const [itemsToDelete, setItemsToDelete] = useState([]);
 
    useEffect(() => {
       if (list?.items) {
          for (const item of list.items) {
             item.selected = false;
          }
-         dispatch({ type: "SET_ITEMS", payload: list.items });
-         setAscending([...list.items]);
-         setDescending([...list.items].reverse());
-         setMovies([...list.items].filter((e) => e.item_type === "movie"));
-         setTvSeries([...list.items].filter((e) => e.item_type === "tv"));
       }
+      setFilteredItems(list?.items);
    }, [list?.items]);
 
    useEffect(() => {
       dispatchList(getList(id));
    }, [dispatchList, id]);
 
+   // setMovies([...list.items].filter((e) => e.item_type === "movie"));
+   // setTvSeries([...list.items].filter((e) => e.item_type === "tv"));
+
    const cancelBtn = useRef(null);
+
+   const [selectedId, setSelectedId] = useState(null);
+   const [selectedImg, setSelectedImg] = useState(null);
+
+   const [showDeleteButtons, setShowDeleteButtons] = useState(false);
+   const openDeleteButtons = () => setShowDeleteButtons(true);
+   const closeDeleteButtons = () => {
+      setShowDeleteButtons(false);
+      for (const item of filteredItems) {
+         item.selected = false;
+      }
+      setFilteredItems([...filteredItems]);
+      setItemsToDelete([]);
+   };
+
+   const [showModal, setShowModal] = useState(false);
+   const openModal = () => setShowModal(true);
+   const closeModal = () => setShowModal(false);
 
    return (
       <>
          <Title>{list?.name}</Title>
          <div className="flex justify-between items-center">
             <CreatedAt date={list?.createdAt} />
-            <SortBy
-               {...{ ascending, descending, setByType, dispatch, setSubTitle }}
-            />
+         </div>
+         <div className="flex space-x-3 mb-5">
+            <FilterPill>All</FilterPill>
+            <FilterPill>TV Shows</FilterPill>
+            <FilterPill>Movie</FilterPill>
          </div>
 
-         {!byType ? (
-            <Type
-               itemsArray={items}
-               message="There is no Movies or Shows on this list"
-               {...{ items, subTitle, dispatch, openDelete }}
+         <AnimateSharedLayout>
+            <div className="grid gap-5 grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+               {filteredItems?.map((media) => (
+                  <ListItem
+                     key={media._id}
+                     media={media}
+                     setSelectedId={setSelectedId}
+                     setSelectedImg={setSelectedImg}
+                     showDeleteButtons={showDeleteButtons}
+                     filteredItems={filteredItems}
+                     setFilteredItems={setFilteredItems}
+                     setItemsToDelete={setItemsToDelete}
+                  />
+               ))}
+            </div>
+            <TransitionPoster
+               selectedId={selectedId}
+               selectedImg={selectedImg}
             />
-         ) : (
-            <>
-               <Type
-                  itemsArray={movies}
-                  message="There is no Movies in this list"
-                  subTitle="Movies"
-                  {...{ items, dispatch, openDelete }}
-               />
-               <div className="mb-5"></div>
-               <Type
-                  itemsArray={tvSeries}
-                  message="There is no TV Series in this list"
-                  subTitle="TV Series"
-                  {...{ items, dispatch, openDelete }}
-               />
-            </>
-         )}
+         </AnimateSharedLayout>
+
          <DeleteItemsModal
-            {...{ itemsToDelete, closeModal, id, cancelBtn, showModal }}
+            {...{
+               itemsToDelete,
+               showModal,
+               openModal,
+               closeModal,
+               id,
+               cancelBtn,
+            }}
          />
          <DeleteItems
-            {...{ dispatch, itemsToDelete, items, cancelBtn, openDelete }}
+            {...{
+               itemsToDelete,
+               openModal,
+               cancelBtn,
+               showDeleteButtons,
+               openDeleteButtons,
+               closeDeleteButtons,
+            }}
          />
       </>
    );

@@ -1,31 +1,11 @@
-// React
 import { useSelector } from "react-redux";
-import { useState } from "react";
-
 import SideItem from "./SideItem";
-
-import DeleteButton from "./DeleteButton";
-import DeleteListModal from "../Modals/DeleteListModal";
 import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 
 export default function SideLists() {
    const { lists } = useSelector((state) => state.lists);
 
    const { sidebarExtended } = useSidebarExtendedContext();
-
-   const [showModal, setShowModal] = useState(false);
-   const [currentTitle, setCurrentTitle] = useState("");
-   const [currentId, setCurrentId] = useState(null);
-
-   const openDeleteModal = (id, title) => {
-      setShowModal(true);
-      setCurrentId(id);
-      setCurrentTitle(title);
-   };
-
-   const closeModal = () => {
-      setShowModal(false);
-   };
 
    return (
       <div>
@@ -40,15 +20,7 @@ export default function SideLists() {
                      name={list.name}
                      icon={"featured_play_list"}
                      link={`/lists/${list._id}`}
-                  >
-                     {sidebarExtended && (
-                        <DeleteButton
-                           id={list._id}
-                           name={list.name}
-                           {...{ openDeleteModal }}
-                        />
-                     )}
-                  </SideItem>
+                  />
                ))}
             </ul>
          ) : (
@@ -56,15 +28,6 @@ export default function SideLists() {
                The Lists that you create will appear here
             </div>
          )}
-
-         <DeleteListModal
-            {...{
-               showModal,
-               closeModal,
-               currentTitle,
-               currentId,
-            }}
-         />
       </div>
    );
 }

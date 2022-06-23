@@ -34,7 +34,7 @@ export default function DeleteItemsModal({
 
    return (
       <ModalContainer isModalOpen={showModal} closeModal={closeModal}>
-         <ModalTitle>Delete Items</ModalTitle>
+         <ModalTitle>Delete from "List Name"</ModalTitle>
          <ModalBody>
             <div>The next items are going to be deleted:</div>
             <div>

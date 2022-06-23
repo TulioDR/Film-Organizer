@@ -21,7 +21,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import SaveButton from "../components/MediaDetails/SaveButton";
 import Score from "../components/MediaDetails/Score";
 import InfoBar from "../components/MediaDetails/InfoBar";
-import useSelectedMediaContext from "../context/SelectedMediaContext";
+import useSelectedPosterContext from "../context/SelectedPosterContext";
 
 const tabs = [
    "Overview",
@@ -59,23 +59,23 @@ export default function MediaDetails() {
 
    const [selected, setSelected] = useState(0);
 
-   const { selectedMedia, setSelectedMedia } = useSelectedMediaContext();
+   const { selectedPoster, setSelectedPoster } = useSelectedPosterContext();
    const [posterSize, setPosterSize] = useState("md");
 
    useEffect(() => {
       setPosterSize("lg");
       if (poster_path) {
-         setSelectedMedia(poster_path);
+         setSelectedPoster(poster_path);
       }
-   }, [poster_path, setSelectedMedia]);
+   }, [poster_path, setSelectedPoster]);
    return (
       <>
          <div className="md:flex w-full md:space-x-12 media-details-height">
             <div className="relative h-full">
-               <Poster src={selectedMedia} posterSize={posterSize} />
+               <Poster src={selectedPoster} posterSize={posterSize} />
                <SaveButton onClick={checkUser} isSaved={isSaved} />
             </div>
-            <AnimatePresence initial={false} exitBeforeEnter>
+            <AnimatePresence>
                {!isLoading && (
                   <motion.div
                      initial={{ x: 200, opacity: 0 }}

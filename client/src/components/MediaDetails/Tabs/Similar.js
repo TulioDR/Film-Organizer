@@ -1,17 +1,32 @@
-import { getPoster } from "../../../utils/getPosters";
+import { AnimateSharedLayout } from "framer-motion";
+import { useState } from "react";
+import TransitionPoster from "../../PageTransitions/TransitionPoster";
+import SimilarPoster from "./SimilarPoster";
 
 export default function Similar({ similar, type, isMovie }) {
+   const [selectedId, setSelectedId] = useState(null);
+   const [selectedImg, setSelectedImg] = useState(null);
    return (
-      <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 pt-5 pr-3">
-         {similar?.map(({ id, poster_path }) => (
-            <article key={id} to={`/media-details/${type}/${id}`} className="">
-               <img
-                  src={getPoster(poster_path, "md", true)}
-                  alt={id}
-                  className="w-full rounded-md shadow-material"
-               />
-            </article>
-         )) || `No similar ${isMovie ? "Movies" : "Shows"} available`}
-      </div>
+      <>
+         <AnimateSharedLayout>
+            <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 pt-5 pr-3">
+               {similar?.map((similar) => (
+                  <SimilarPoster
+                     key={similar.id}
+                     similar={similar}
+                     alt={similar.id}
+                     type={type}
+                     posterPath={similar.poster_path}
+                     setSelectedId={setSelectedId}
+                     setSelectedImg={setSelectedImg}
+                  />
+               )) || `No similar ${isMovie ? "Movies" : "Shows"} available`}
+            </div>
+            <TransitionPoster
+               selectedId={selectedId}
+               selectedImg={selectedImg}
+            />
+         </AnimateSharedLayout>
+      </>
    );
 }

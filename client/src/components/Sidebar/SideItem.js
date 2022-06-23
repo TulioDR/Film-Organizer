@@ -3,7 +3,7 @@ import { useRef } from "react";
 import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 import { matchPath } from "react-router";
 
-export default function SideItem({ name, icon, link, ...props }) {
+export default function SideItem({ name, icon, link }) {
    const buttonRef = useRef();
 
    const { closeSidebarMobile, sidebarExtended } = useSidebarExtendedContext();
@@ -19,6 +19,11 @@ export default function SideItem({ name, icon, link, ...props }) {
          onClick={closeSidebarMobile}
          ref={buttonRef}
       >
+         {!sidebarExtended && (
+            <span className="absolute bg-blue-400 dark:bg-blue-600 py-1 px-3 w-auto min-w-max transition-all duration-100 delay-200 scale-0 group-hover:scale-100 origin-left text-sm left-full transform translate-x-2 rounded-md">
+               {name}
+            </span>
+         )}
          <div
             className={`h-full rounded-r-md transform ${
                match?.isExact
@@ -26,13 +31,6 @@ export default function SideItem({ name, icon, link, ...props }) {
                   : "duration-200 w-20 bg-blue-300 dark:bg-blue-500 -translate-x-full group-hover:translate-x-0"
             }`}
          ></div>
-         {!sidebarExtended && (
-            <span className="absolute bg-blue-400 dark:bg-blue-600 py-1 px-3 w-auto min-w-max transition-all duration-100 delay-200 scale-0 group-hover:scale-100 origin-left text-sm left-full transform translate-x-2 rounded-md">
-               {name}
-            </span>
-         )}
-
-         {props.children}
          <Link
             to={link}
             className="absolute h-full w-full top-0 pl-10 flex items-center"

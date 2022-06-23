@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import MovieJumboPoster from "./MovieJumboPoster";
 import NextBtn from "../NextBtn";
 import JumbotronSubtitle from "../JumbotronSubtitle";
@@ -9,6 +8,7 @@ import JumbotronContainer from "../JumbotronContainer";
 import JumboBtnsContainer from "../JumboBtnsContainer";
 import SaveBtn from "../SaveBtn";
 import MoreInfoBtn from "../MoreInfoBtn";
+import useGetMediaDetails from "../../../../hooks/useGetMediaDetails";
 
 export default function MovieJumbotron({ nowPlaying }) {
    const [array, setArray] = useState([]);
@@ -16,8 +16,10 @@ export default function MovieJumbotron({ nowPlaying }) {
    const [selectedMovie, setSelectedMovie] = useState(null);
    const [isAnimating, setIsAnimating] = useState(false);
 
-   const history = useHistory();
-   const getInfo = () => history.push(`/media-details/movie/${array[0].id}`);
+   const [getMoreInfo] = useGetMediaDetails({
+      type: "movie",
+      selected: selectedMovie,
+   });
 
    const foward = () => {
       setIsFoward(true);
@@ -65,7 +67,7 @@ export default function MovieJumbotron({ nowPlaying }) {
             </div>
             <JumboBtnsContainer isAnimating={isAnimating}>
                <SaveBtn />
-               <MoreInfoBtn onClick={getInfo} />
+               <MoreInfoBtn onClick={getMoreInfo} />
             </JumboBtnsContainer>
          </div>
          <div className="flex space-x-2 z-20 my-5">

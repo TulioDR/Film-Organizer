@@ -1,4 +1,4 @@
-import { getPoster } from "../../utils/getPosters";
+import { getPoster } from "../../../utils/getPosters";
 import { motion } from "framer-motion";
 export default function CardPoster({ posterPath, toggleInfo }) {
    return (

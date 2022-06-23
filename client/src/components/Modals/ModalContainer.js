@@ -7,7 +7,7 @@ const backdrop = {
 };
 
 const modal = {
-   hidden: { y: "-100vh", opacity: 0 },
+   hidden: { y: "50%", opacity: 0 },
    visible: {
       y: "0",
       opacity: 1,

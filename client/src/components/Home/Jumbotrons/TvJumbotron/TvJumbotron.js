@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import TvJumboPoster from "./TvJumboPoster";
-import { useHistory } from "react-router-dom";
 import JumbotronSubtitle from "../JumbotronSubtitle";
 import JumbDate from "../JumbDate";
 import JumbotronTitle from "../JumbotronTitle";
@@ -10,6 +9,7 @@ import NextBtn from "../NextBtn";
 import JumboBtnsContainer from "../JumboBtnsContainer";
 import SaveBtn from "../SaveBtn";
 import MoreInfoBtn from "../MoreInfoBtn";
+import useGetMediaDetails from "../../../../hooks/useGetMediaDetails";
 
 export default function TvJumbotron({ onAir }) {
    const [array, setArray] = useState([]);
@@ -17,8 +17,10 @@ export default function TvJumbotron({ onAir }) {
    const [selectedShow, setSelectedShow] = useState(null);
    const [isAnimating, setIsAnimating] = useState(false);
 
-   const history = useHistory();
-   const getInfo = () => history.push(`/media-details/tv/${array[0].id}`);
+   const [getMoreInfo] = useGetMediaDetails({
+      type: "tv",
+      selected: selectedShow,
+   });
 
    useEffect(() => {
       setArray(onAir);
@@ -75,7 +77,7 @@ export default function TvJumbotron({ onAir }) {
                   />
                   <JumboBtnsContainer isAnimating={isAnimating}>
                      <SaveBtn />
-                     <MoreInfoBtn onClick={getInfo} />
+                     <MoreInfoBtn onClick={getMoreInfo} />
                   </JumboBtnsContainer>
                </div>
             </div>
