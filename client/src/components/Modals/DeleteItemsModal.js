@@ -1,12 +1,11 @@
-import ModalBody from "@material-tailwind/react/ModalBody";
-import ModalFooter from "@material-tailwind/react/ModalFooter";
-import Button from "@material-tailwind/react/Button";
-import ModalContainer from "./ModalContainer";
-
 import { useState, useEffect } from "react";
 import { deleteItems } from "../../actions/lists";
 import { useDispatch } from "react-redux";
-import ModalTitle from "./ModalTitle";
+
+import ModalContainer from "./ModalParts/ModalContainer";
+import ModalTitle from "./ModalParts/ModalTitle";
+import ModalBody from "./ModalParts/ModalBody";
+import ModalFooter from "./ModalParts/ModalFooter";
 
 export default function DeleteItemsModal({
    itemsToDelete,
@@ -74,18 +73,8 @@ export default function DeleteItemsModal({
             </div>
          </ModalBody>
          <ModalFooter>
-            <Button
-               color="blueGray"
-               buttonType="link"
-               onClick={closeModal}
-               ripple="dark"
-            >
-               Cancel
-            </Button>
-
-            <Button color="red" onClick={deleteItemsFromDB} ripple="light">
-               Delete
-            </Button>
+            <button onClick={closeModal}>Cancel</button>
+            <button onClick={deleteItemsFromDB}>Delete</button>
          </ModalFooter>
       </ModalContainer>
    );

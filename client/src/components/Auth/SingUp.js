@@ -1,5 +1,3 @@
-import Input from "@material-tailwind/react/Input";
-import InputIcon from "@material-tailwind/react/InputIcon";
 import { useState } from "react";
 
 export default function SingUp({ handleChange }) {
@@ -9,7 +7,7 @@ export default function SingUp({ handleChange }) {
    return (
       <>
          <div className="flex space-x-6">
-            <Input
+            <input
                type="text"
                color="deepPurple"
                size="lg"
@@ -18,7 +16,7 @@ export default function SingUp({ handleChange }) {
                placeholder="First Name"
                onChange={handleChange}
             />
-            <Input
+            <input
                type="text"
                color="deepPurple"
                size="lg"
@@ -28,7 +26,7 @@ export default function SingUp({ handleChange }) {
                onChange={handleChange}
             />
          </div>
-         <Input
+         <input
             type="text"
             color="deepPurple"
             size="lg"
@@ -38,7 +36,7 @@ export default function SingUp({ handleChange }) {
             onChange={handleChange}
          />
          <div className="flex items-center relative">
-            <InputIcon
+            <input
                type={showPassword ? "text" : "password"}
                color="deepPurple"
                size="lg"
@@ -54,7 +52,7 @@ export default function SingUp({ handleChange }) {
                className="absolute right-0 h-8 w-6 cursor-pointer"
             ></span>
          </div>
-         <Input
+         <input
             type="password"
             color="deepPurple"
             size="lg"

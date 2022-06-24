@@ -4,7 +4,7 @@ export default function Tabs({ tabs, selected, setSelected }) {
    return (
       <AnimateSharedLayout transition={{ duration: 0.5 }}>
          <div className="flex justify-between border-b border-gray-500">
-            {tabs.map((detail, index) => (
+            {tabs.map((tab, index) => (
                <motion.div
                   key={index}
                   className={`${
@@ -12,10 +12,10 @@ export default function Tabs({ tabs, selected, setSelected }) {
                         ? "text-black dark:text-white"
                         : "text-gray-500 dark:text-gray-400"
                   } pb-3 uppercase relative cursor-pointer`}
-                  onClick={() => setSelected(index)}
+                  onClick={() => setSelected(tab)}
                >
-                  {detail}
-                  {index === selected && (
+                  {tab}
+                  {tab === selected && (
                      <motion.div
                         layoutId="underline"
                         className="w-full bg-blue-500 absolute"

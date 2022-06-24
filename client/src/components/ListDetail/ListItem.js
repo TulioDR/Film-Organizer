@@ -34,6 +34,10 @@ export default function ListItem({
 
    return (
       <motion.article
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
+         transition={{ duration: 0.3 }}
          onClick={showDeleteButtons ? markItem : animatedGetMoreInfo}
          layoutId={media.item_id}
          className="relative rounded-md overflow-hidden shadow-material cursor-pointer"

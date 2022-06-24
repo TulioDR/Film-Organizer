@@ -16,7 +16,7 @@ export default function Sidebar() {
    return (
       <SideContainer>
          <Select />
-         <div className="flex-1 card-scrollbar">
+         <div className="flex-1 overflow-y-auto">
             <SideLinks isMovie={isMovie} />
 
             {user ? (

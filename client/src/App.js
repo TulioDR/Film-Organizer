@@ -1,10 +1,6 @@
-import "@material-tailwind/react/tailwind.css";
 import "./App.scss";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 // Containers
 import Body from "./containers/Body";
@@ -17,15 +13,6 @@ import Routes from "./containers/Routes";
 import Auth from "./pages/Auth";
 
 export default function App() {
-   useEffect(() => {
-      AOS.init({
-         offset: 0,
-         duration: 1000,
-         once: true,
-         delay: 0,
-         disable: "mobile",
-      });
-   }, []);
    return (
       <Router>
          <Switch>

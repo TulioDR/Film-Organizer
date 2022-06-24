@@ -1,4 +1,3 @@
-import Button from "@material-tailwind/react/Button";
 import { useHistory } from "react-router";
 
 export default function Description() {
@@ -12,19 +11,9 @@ export default function Description() {
             A place for you to easily manage Movies and TV Series in lists
             created by you.
          </div>
-         <Button
-            color="deepPurple"
-            buttonType="filled"
-            size="lg"
-            rounded={false}
-            block={false}
-            iconOnly={false}
-            ripple="light"
-            onClick={goHome}
-            className="mx-auto mt-4"
-         >
+         <button onClick={goHome} className="mx-auto mt-4">
             Try It!
-         </Button>
+         </button>
       </div>
    );
 }

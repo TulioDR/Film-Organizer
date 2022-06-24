@@ -1,8 +1,7 @@
-import ModalBody from "@material-tailwind/react/ModalBody";
-import ModalFooter from "@material-tailwind/react/ModalFooter";
-import Button from "@material-tailwind/react/Button";
-import ModalContainer from "./ModalContainer";
-import ModalTitle from "./ModalTitle";
+import ModalContainer from "./ModalParts/ModalContainer";
+import ModalTitle from "./ModalParts/ModalTitle";
+import ModalBody from "./ModalParts/ModalBody";
+import ModalFooter from "./ModalParts/ModalFooter";
 
 export default function CreateListModal({
    showModal,
@@ -26,19 +25,11 @@ export default function CreateListModal({
                />
             </ModalBody>
             <ModalFooter>
-               <Button
-                  type="button"
-                  color="red"
-                  buttonType="link"
-                  onClick={closeModal}
-                  ripple="dark"
-               >
-                  Close
-               </Button>
+               <button onClick={closeModal}>Close</button>
 
-               <Button type="submit" color="blue" ripple="light">
+               <button type="submit" color="blue" ripple="light">
                   Create
-               </Button>
+               </button>
             </ModalFooter>
          </form>
       </ModalContainer>

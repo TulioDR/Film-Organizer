@@ -1,14 +1,11 @@
-import ModalBody from "@material-tailwind/react/ModalBody";
-import ModalFooter from "@material-tailwind/react/ModalFooter";
-import Button from "@material-tailwind/react/Button";
-import ModalTitle from "./ModalTitle";
-
-import ModalContainer from "./ModalContainer";
-
 import { useDispatch } from "react-redux";
 import { deleteList } from "../../actions/lists";
 import { useHistory } from "react-router";
 
+import ModalContainer from "./ModalParts/ModalContainer";
+import ModalTitle from "./ModalParts/ModalTitle";
+import ModalBody from "./ModalParts/ModalBody";
+import ModalFooter from "./ModalParts/ModalFooter";
 export default function DeleteListModal({
    showModal,
    closeModal,
@@ -44,22 +41,9 @@ export default function DeleteListModal({
             </div>
          </ModalBody>
          <ModalFooter>
-            <Button
-               color="blueGray"
-               buttonType="link"
-               onClick={closeModal}
-               ripple="dark"
-            >
-               Cancel
-            </Button>
+            <button onClick={closeModal}>Cancel</button>
 
-            <Button
-               color="red"
-               onClick={() => deleteThisList(currentId)}
-               ripple="light"
-            >
-               Delete
-            </Button>
+            <button onClick={() => deleteThisList(currentId)}>Delete</button>
          </ModalFooter>
       </ModalContainer>
    );

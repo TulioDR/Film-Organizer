@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { baseURL } from "../constants/baseURL";
 import { useParams } from "react-router-dom";
 
-import React from "react";
-import EpisodeDetailModal from "../components/Modals/EpisodeDetailModal";
 import EpCard from "../components/SeasonDetails/EpCard";
 
 import SeasonOverview from "../components/SeasonDetails/SeasonOverview";
@@ -15,15 +13,6 @@ import SeasonEpisodes from "../components/SeasonDetails/SeasonEpisodes";
 export default function SeasonDetails() {
    const { id, seasonNumber } = useParams();
    const [data, setData] = useState(null);
-   const [showModal, setShowModal] = useState(false);
-   const closeModal = () => setShowModal(false);
-   const openModal = (data) => {
-      setShowModal(true);
-      setEpisode(data);
-      console.log(data);
-   };
-
-   const [episode, setEpisode] = useState(null);
 
    useEffect(() => {
       const getSeasonInfo = async () => {
@@ -55,10 +44,9 @@ export default function SeasonDetails() {
          <div className="text-3xl mb-8">Episodes</div>
          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-7 gap-y-12">
             {data.episodes.map((ep) => (
-               <EpCard key={ep.id} ep={ep} openModal={openModal} />
+               <EpCard key={ep.id} ep={ep} />
             ))}
          </div>
-         <EpisodeDetailModal {...{ showModal, closeModal, episode }} />
       </>
    );
 }

@@ -7,10 +7,8 @@ export default function SimilarPoster({
    alt,
    type,
    posterPath,
-   setSelectedId,
    setSelectedImg,
 }) {
-   console.log(similar.id);
    const [getMoreInfo] = useGetMediaDetails({
       type: type,
       selected: similar,
@@ -18,9 +16,9 @@ export default function SimilarPoster({
 
    const animatedGetMoreInfo = () => {
       setSelectedImg(posterPath);
-      setSelectedId(similar.id);
-      // setTimeout(() => setSelectedId(similar.id), 1000);
-      // setTimeout(getMoreInfo, 900);
+      setTimeout(() => {
+         getMoreInfo();
+      }, 500);
    };
    return (
       <motion.div

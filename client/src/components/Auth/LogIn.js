@@ -1,5 +1,3 @@
-import Input from "@material-tailwind/react/Input";
-import InputIcon from "@material-tailwind/react/InputIcon";
 import { useState } from "react";
 
 export default function LogIn({ handleChange }) {
@@ -8,7 +6,7 @@ export default function LogIn({ handleChange }) {
 
    return (
       <>
-         <Input
+         <input
             type="text"
             color="deepPurple"
             size="lg"
@@ -18,7 +16,7 @@ export default function LogIn({ handleChange }) {
             onChange={handleChange}
          />
          <div className="flex items-center relative">
-            <InputIcon
+            <input
                type={showPassword ? "text" : "password"}
                color="deepPurple"
                size="lg"

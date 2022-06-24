@@ -1,7 +1,6 @@
 import useOptionValues from "../../hooks/useOptionsValues";
 import SearchFor from "./SearchFor";
 import DropDown from "./DropDown";
-import Button from "@material-tailwind/react/Button";
 
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -91,18 +90,7 @@ export default function Form() {
             />
          </div>
 
-         <Button
-            color="deepPurple"
-            buttonType="filled"
-            size="regular"
-            rounded={false}
-            block={false}
-            iconOnly={false}
-            ripple="light"
-            className="w-52 mx-auto mt-7 bg-purple-900"
-         >
-            Search
-         </Button>
+         <button className="w-52 mx-auto mt-7 bg-purple-900">Search</button>
       </form>
    );
 }

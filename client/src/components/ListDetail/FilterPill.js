@@ -1,6 +1,18 @@
-export default function FilterPill({ children }) {
+export default function FilterPill({
+   onClick,
+   currentFilter,
+   filter,
+   children,
+}) {
    return (
-      <span className="rounded-full py-1 px-5 bg-blue-500 text-sm">
+      <span
+         onClick={onClick}
+         className={`rounded-full py-1 px-5 border text-sm cursor-pointer ${
+            currentFilter === filter
+               ? "border-blue-400 bg-blue-400 dark:border-blue-600 dark:bg-blue-600"
+               : "border-black dark:border-white"
+         }`}
+      >
          {children}
       </span>
    );

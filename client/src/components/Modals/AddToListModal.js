@@ -1,10 +1,10 @@
-import ModalBody from "@material-tailwind/react/ModalBody";
-import ModalFooter from "@material-tailwind/react/ModalFooter";
-import ModalContainer from "./ModalContainer";
-import Button from "@material-tailwind/react/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from "../../actions/lists";
-import ModalTitle from "./ModalTitle";
+
+import ModalContainer from "./ModalParts/ModalContainer";
+import ModalTitle from "./ModalParts/ModalTitle";
+import ModalBody from "./ModalParts/ModalBody";
+import ModalFooter from "./ModalParts/ModalFooter";
 
 export default function AddToListModal({
    showSaveToListModal,
@@ -62,9 +62,7 @@ export default function AddToListModal({
             </ul>
          </ModalBody>
          <ModalFooter>
-            <Button color="red" ripple="light" onClick={closeSaveToListModal}>
-               Close
-            </Button>
+            <button onClick={closeSaveToListModal}>Close</button>
          </ModalFooter>
       </ModalContainer>
    );

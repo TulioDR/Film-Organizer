@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function DeleteItems({
+export default function DeleteButton({
    itemsToDelete,
    openModal,
    cancelBtn,
@@ -9,9 +9,7 @@ export default function DeleteItems({
    closeDeleteButtons,
 }) {
    return (
-      <section
-         className={`fixed flex bottom-6 right-6 z-30 rounded-md overflow-hidden`}
-      >
+      <section className="fixed flex bottom-6 right-6 z-30 rounded-md overflow-hidden">
          <AnimatePresence>
             {showDeleteButtons && (
                <motion.button
@@ -38,7 +36,6 @@ export default function DeleteItems({
                   : ""
             } `}
             onClick={showDeleteButtons ? openModal : openDeleteButtons}
-            // onClick={openDelete ? deleteItems : openBox}
          >
             <span className="material-icons text-3xl">delete</span>
          </button>

@@ -1,5 +1,3 @@
-import Button from "@material-tailwind/react/Button";
-
 import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 
 export default function NavBrand() {
@@ -8,32 +6,12 @@ export default function NavBrand() {
 
    return (
       <span className="flex items-center h-12">
-         <Button
-            color="white"
-            buttonType="link"
-            size="regular"
-            rounded={true}
-            block={false}
-            iconOnly={true}
-            ripple="light"
-            onClick={toggleSidebarExtended}
-            className="hidden md:grid"
-         >
+         <button onClick={toggleSidebarExtended} className="hidden md:grid">
             <span className="material-icons">menu</span>
-         </Button>
-         <Button
-            color="white"
-            buttonType="link"
-            size="regular"
-            rounded={true}
-            block={false}
-            iconOnly={true}
-            ripple="light"
-            onClick={toggleSidebarRevealed}
-            className="md:hidden"
-         >
+         </button>
+         <button onClick={toggleSidebarRevealed} className="md:hidden">
             <span className="material-icons">menu</span>
-         </Button>
+         </button>
 
          <span className="app-brand uppercase ml-4 text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-blue-400">
             Film's Organizer

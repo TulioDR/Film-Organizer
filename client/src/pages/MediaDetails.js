@@ -22,10 +22,13 @@ import SaveButton from "../components/MediaDetails/SaveButton";
 import Score from "../components/MediaDetails/Score";
 import InfoBar from "../components/MediaDetails/InfoBar";
 import useSelectedPosterContext from "../context/SelectedPosterContext";
+import MediaDetailsTrPoster from "../components/PageTransitions/MediaDetailsTrPoster";
+import Seasons from "../components/MediaDetails/Tabs/Seasons";
 
-const tabs = [
+const movieTabs = ["Overview", "Trailers & More", "Cast & Crew", "Similar"];
+const tvTabs = [
    "Overview",
-   // "Seasons",
+   "Seasons",
    "Trailers & More",
    "Cast & Crew",
    "Similar",
@@ -68,6 +71,19 @@ export default function MediaDetails() {
          setSelectedPoster(poster_path);
       }
    }, [poster_path, setSelectedPoster]);
+
+   const [selectedImg, setSelectedImg] = useState(null);
+   useEffect(() => {
+      setSelectedImg(null);
+      setSelected(0);
+   }, [id]);
+
+   const [tabs, setTabs] = useState([]);
+   useEffect(() => {
+      if (mediaType === "movie") setTabs(movieTabs);
+      else setTabs(tvTabs);
+   }, [mediaType]);
+
    return (
       <>
          <div className="md:flex w-full md:space-x-12 media-details-height">
@@ -103,7 +119,7 @@ export default function MediaDetails() {
                         />
                         <div className="flex-1 overflow-y-auto card-scrollbar">
                            <AnimatePresence>
-                              {selected === 0 && (
+                              {selected === "Overview" && (
                                  <Overview
                                     tagline={tagline}
                                     overview={overview}
@@ -112,13 +128,14 @@ export default function MediaDetails() {
                                     media={media}
                                  />
                               )}
-                              {selected === 1 && (
+                              {selected === "Seasons" && <Seasons />}
+                              {selected === "Trailers & More" && (
                                  <Trailers
                                     trailers={videos}
                                     isMovie={isMovie}
                                  />
                               )}
-                              {selected === 2 && (
+                              {selected === "Cast & Crew" && (
                                  <CastAndCrew
                                     cast={media.credits?.cast}
                                     crew={media.credits?.crew}
@@ -126,11 +143,12 @@ export default function MediaDetails() {
                                     isMovie={isMovie}
                                  />
                               )}
-                              {selected === 3 && (
+                              {selected === "Similar" && (
                                  <Similar
                                     similar={media.similar?.results}
                                     type={isMovie ? "movie" : "tv"}
                                     isMovie={isMovie}
+                                    setSelectedImg={setSelectedImg}
                                  />
                               )}
                            </AnimatePresence>
@@ -140,6 +158,7 @@ export default function MediaDetails() {
                )}
             </AnimatePresence>
          </div>
+         <MediaDetailsTrPoster selectedImg={selectedImg} />
          <AddToListModal
             {...{ showSaveToListModal, closeSaveToListModal, currentData }}
          />

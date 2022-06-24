@@ -8,7 +8,6 @@ import Img from "../components/Auth/Img";
 import LogIn from "../components/Auth/LogIn";
 import SingUp from "../components/Auth/SingUp";
 import ToggleType from "../components/Auth/ToggleType";
-import Button from "@material-tailwind/react/Button";
 
 import { login, signup } from "../actions/auth";
 import ErrorMessage from "../components/Auth/ErrorMessage";
@@ -74,17 +73,7 @@ export default function Auth() {
                      ) : (
                         <SingUp {...{ handleChange }} />
                      )}
-                     <Button
-                        color="deepPurple"
-                        buttonType="filled"
-                        size="lg"
-                        rounded={true}
-                        block={true}
-                        iconOnly={false}
-                        ripple="light"
-                     >
-                        {isLogin ? "LOG IN" : "SIGN UP"}
-                     </Button>
+                     <button>{isLogin ? "LOG IN" : "SIGN UP"}</button>
                      <GoggleBtn />
                   </form>
                </div>
