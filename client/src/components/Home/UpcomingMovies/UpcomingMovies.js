@@ -12,20 +12,18 @@ export default function UpcomingMovies({ movies, isLoading }) {
       <UpScroller>
          {isLoading
             ? skeletonArray.map((n) => <UpMediaSkeleton key={n} />)
-            : movies?.map(
-                 ({ id, title, backdrop_path, poster_path, release_date }) => (
-                    <UpMediaContainer
-                       key={id}
-                       to={`/media-details/movie/${id}`}
-                    >
-                       <UpMediaPoster
-                          src={backdrop_path || poster_path}
-                          alt={id}
-                       />
-                       <UpBottomInfo title={title} releaseDate={release_date} />
-                    </UpMediaContainer>
-                 )
-              )}
+            : movies?.map((movie) => (
+                 <UpMediaContainer key={movie.id} movie={movie}>
+                    <UpMediaPoster
+                       src={movie.backdrop_path || movie.poster_path}
+                       alt={movie.id}
+                    />
+                    <UpBottomInfo
+                       title={movie.title}
+                       releaseDate={movie.release_date}
+                    />
+                 </UpMediaContainer>
+              ))}
       </UpScroller>
    );
 }

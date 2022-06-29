@@ -7,8 +7,11 @@ export const login = (formData, router) => async (dispatch) => {
       dispatch({ type: AUTH, data });
       router.push("/");
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       dispatch({ type: "ERROR", error });
+      setTimeout(() => {
+         dispatch({ type: "REMOVE ERROR" });
+      }, 3000);
    }
 };
 
@@ -18,7 +21,10 @@ export const signup = (formData, router) => async (dispatch) => {
       dispatch({ type: AUTH, data });
       router.push("/");
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       dispatch({ type: "ERROR", error });
+      setTimeout(() => {
+         dispatch({ type: "REMOVE ERROR" });
+      }, 3000);
    }
 };

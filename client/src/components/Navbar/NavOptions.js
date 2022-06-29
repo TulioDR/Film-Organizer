@@ -5,7 +5,7 @@ import UserLogo from "./Options/UserLogo";
 import useUser from "../../hooks/useUser";
 
 export default function NavOptions() {
-   const [user, login, logout] = useUser();
+   const [user, login, signup, logout] = useUser();
    return (
       <div className="flex">
          <ThemeButton />
@@ -15,7 +15,7 @@ export default function NavOptions() {
             <LogButton onClick={login} text="Log in" />
          )}
          <LogButton
-            onClick={user ? logout : login}
+            onClick={user ? logout : signup}
             text={user ? "Log out" : "Sign up"}
             reverse
          />

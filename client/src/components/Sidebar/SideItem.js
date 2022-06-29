@@ -26,7 +26,7 @@ export default function SideItem({ name, icon, link }) {
                      : "duration-200 w-20 bg-blue-300 dark:bg-blue-500 -translate-x-full group-hover:translate-x-0"
                }`}
             ></div>
-            <div className="absolute top-0 left-0 h-full w-full pl-10 flex items-center">
+            <div className="absolute top-0 left-0 h-full w-full pl-8 lg:pl-10 flex items-center">
                <span className="material-icons">{icon}</span>
                <span
                   className={`pl-6 truncate transition-opacity duration-100 ${

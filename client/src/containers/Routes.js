@@ -6,7 +6,6 @@ import Genres from "../pages/Genres";
 import Advanced from "../pages/Advanced";
 import ListDetails from "../pages/ListDetails";
 import MediaDetails from "../pages/MediaDetails";
-import SeasonDetails from "../pages/SeasonDetails";
 
 export default function Routes() {
    return (
@@ -17,14 +16,8 @@ export default function Routes() {
          <Route exact path="/advanced" component={Advanced} />
          <Route exact path="/manage" component={Manage} />
          <Route
-            
             path="/search/:searchType/:mediaType/:searchQuery"
             component={Cards}
-         />
-         <Route
-            exact
-            path="/media-details/tv/:id/season-details/:seasonNumber"
-            component={SeasonDetails}
          />
          <Route
             exact

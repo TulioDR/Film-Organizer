@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Icon from "./Icon";
+import Input from "./Input";
+import VisibilityBtn from "./VisibilityBtn";
 
 export default function LogIn({ handleChange }) {
    const [showPassword, setShowPassword] = useState(false);
@@ -6,31 +9,30 @@ export default function LogIn({ handleChange }) {
 
    return (
       <>
-         <input
-            type="text"
-            color="deepPurple"
-            size="lg"
-            outline={false}
-            name="email"
-            placeholder="Email Address"
-            onChange={handleChange}
-         />
-         <div className="flex items-center relative">
-            <input
-               type={showPassword ? "text" : "password"}
-               color="deepPurple"
-               size="lg"
-               outline={false}
-               name="password"
-               placeholder="Password"
+         <div className="flex items-center">
+            <Icon icon="mail" />
+            <Input
+               type="text"
+               name="email"
+               placeholder="Email Address"
                onChange={handleChange}
-               iconFamily="material-icons"
-               iconName={showPassword ? "visibility_off" : "visibility"}
             />
-            <span
-               onClick={toggleVisibility}
-               className="absolute right-0 h-8 w-6 cursor-pointer"
-            ></span>
+         </div>
+
+         <div className="flex items-center">
+            <Icon icon="lock" />
+            <div className="flex items-center relative flex-1">
+               <Input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+               />
+               <VisibilityBtn
+                  onClick={toggleVisibility}
+                  showPassword={showPassword}
+               />
+            </div>
          </div>
       </>
    );

@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 export default function Loading() {
    const { colorTheme } = useContext(ThemeContext);
    return (
-      <section className="flex justify-center mt-10 h-14">
+      <section className="w-full h-16 flex justify-center items-center ">
          <SyncLoader
             color={colorTheme === "dark" ? "#000" : "#FFF"}
             loading={true}

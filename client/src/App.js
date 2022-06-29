@@ -1,6 +1,11 @@
 import "./App.scss";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+   BrowserRouter as Router,
+   Switch,
+   Route,
+   Redirect,
+} from "react-router-dom";
 
 // Containers
 import Body from "./containers/Body";
@@ -16,7 +21,12 @@ export default function App() {
    return (
       <Router>
          <Switch>
-            <Route exact path="/auth" component={Auth} />
+            <Route
+               exact
+               path="/auth"
+               component={() => <Redirect to="/home/login" />}
+            />
+            <Route exact path="/auth/:type" component={Auth} />
             <Body>
                <Providers>
                   <Navbar />

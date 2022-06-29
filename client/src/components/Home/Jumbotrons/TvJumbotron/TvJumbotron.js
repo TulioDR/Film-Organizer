@@ -54,7 +54,7 @@ export default function TvJumbotron({ onAir }) {
    };
    return (
       <JumbotronContainer>
-         <div className="h-full relative overflow-hidden w-80 2xl:w-125"></div>
+         <div className="h-full relative overflow-hidden w-80"></div>
          <div className="flex-1 relative">
             <BackgroundPoster
                src={selectedShow?.backdrop_path}

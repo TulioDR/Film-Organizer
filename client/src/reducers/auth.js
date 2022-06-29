@@ -9,8 +9,10 @@ export default function auth(state = { authData: null, error: null }, action) {
          localStorage.clear();
          return { ...state, authData: null };
       case "ERROR":
-         console.log(action.error.response.data.message);
+         // console.log(action.error.response.data.message);
          return { ...state, error: action.error.response.data.message };
+      case "REMOVE ERROR":
+         return { ...state, error: null };
       default:
          return state;
    }

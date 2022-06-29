@@ -14,7 +14,6 @@ export default function useMediaDetails() {
          const certifications =
             type === "movie" ? "release_dates" : "content_ratings";
          const url = `${baseURL}/media/details/${type}/${id}/${certifications}`;
-         console.log(url);
          const res = await fetch(url);
          const data = await res.json();
          setMedia(data);

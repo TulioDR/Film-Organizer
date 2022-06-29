@@ -1,12 +1,17 @@
-export default function ToggleType({ toggle, isLogin }) {
+import { Link } from "react-router-dom";
+
+export default function ToggleType({ isLogin }) {
    return (
-      <div className="absolute bottom-2 left-3">
+      <div className="text-sm text-center">
          <span className="text-gray-500">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
          </span>
-         <span onClick={toggle} className="text-purple-900 cursor-pointer">
+         <Link
+            to={`/auth/${isLogin ? "signup" : "login"}`}
+            className="text-blue-600 cursor-pointer"
+         >
             {isLogin ? "Register!" : "Log In!"}
-         </span>
+         </Link>
       </div>
    );
 }

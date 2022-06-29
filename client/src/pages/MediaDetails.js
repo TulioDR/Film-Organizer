@@ -24,6 +24,7 @@ import InfoBar from "../components/MediaDetails/InfoBar";
 import useSelectedPosterContext from "../context/SelectedPosterContext";
 import MediaDetailsTrPoster from "../components/PageTransitions/MediaDetailsTrPoster";
 import Seasons from "../components/MediaDetails/Tabs/Seasons";
+import SeasonDetails from "../components/MediaDetails/SeasonDetails/SeasonDetails";
 
 const movieTabs = ["Overview", "Trailers & More", "Cast & Crew", "Similar"];
 const tvTabs = [
@@ -57,10 +58,15 @@ export default function MediaDetails() {
       else openWarning();
    };
 
-   const { release_dates, content_ratings, tagline, overview, videos } = media;
+   const {
+      release_dates,
+      content_ratings,
+      tagline,
+      overview,
+      videos,
+      seasons,
+   } = media;
    const rating = release_dates?.results || content_ratings?.results;
-
-   const [selected, setSelected] = useState(0);
 
    const { selectedPoster, setSelectedPoster } = useSelectedPosterContext();
    const [posterSize, setPosterSize] = useState("md");
@@ -73,31 +79,51 @@ export default function MediaDetails() {
    }, [poster_path, setSelectedPoster]);
 
    const [selectedImg, setSelectedImg] = useState(null);
-   useEffect(() => {
-      setSelectedImg(null);
-      setSelected(0);
-   }, [id]);
 
    const [tabs, setTabs] = useState([]);
+   const [selected, setSelected] = useState("Overview");
    useEffect(() => {
       if (mediaType === "movie") setTabs(movieTabs);
       else setTabs(tvTabs);
    }, [mediaType]);
+   useEffect(() => {
+      setSelectedImg(null);
+      setSelected("Overview");
+   }, [id]);
+
+   const [showSeasonDetails, setShowSeasonDetails] = useState(false);
+   const [currentSeasonNumber, setCurrentSeasonNumber] = useState(false);
+   const openSeasonDetails = (seasonNumber) => {
+      setShowSeasonDetails(true);
+      setCurrentSeasonNumber(seasonNumber);
+   };
+   const closeSeasonDetails = () => {
+      setShowSeasonDetails(false);
+   };
 
    return (
       <>
-         <div className="md:flex w-full md:space-x-12 media-details-height">
-            <div className="relative h-full">
-               <Poster src={selectedPoster} posterSize={posterSize} />
-               <SaveButton onClick={checkUser} isSaved={isSaved} />
+         <div className="md:flex md:space-x-12 w-full media-details-height">
+            <div className="aspect-w-2 aspect-h-3">
+               <div
+                  className="relative"
+                  style={{ height: "calc(100vh - 7.5rem)" }}
+               >
+                  <Poster src={selectedPoster} posterSize={posterSize} />
+                  <SaveButton onClick={checkUser} isSaved={isSaved} />
+               </div>
             </div>
+
             <AnimatePresence>
                {!isLoading && (
                   <motion.div
                      initial={{ x: 200, opacity: 0 }}
-                     animate={{ x: 0, opacity: 1 }}
+                     animate={{
+                        x: 0,
+                        opacity: 1,
+                     }}
                      transition={{ duration: 0.5 }}
-                     className="flex-1 flex flex-col pt-5 overflow-hidden"
+                     className="flex-1 flex flex-col pt-5 overflow-hidden relative"
                   >
                      <h1 className="text-4xl 2xl:text-5xl font-medium">
                         {media.title || media.name}
@@ -128,7 +154,13 @@ export default function MediaDetails() {
                                     media={media}
                                  />
                               )}
-                              {selected === "Seasons" && <Seasons />}
+                              {selected === "Seasons" && (
+                                 <Seasons
+                                    seasons={seasons}
+                                    showID={id}
+                                    openSeasonDetails={openSeasonDetails}
+                                 />
+                              )}
                               {selected === "Trailers & More" && (
                                  <Trailers
                                     trailers={videos}
@@ -154,6 +186,15 @@ export default function MediaDetails() {
                            </AnimatePresence>
                         </div>
                      </div>
+                     <AnimatePresence>
+                        {showSeasonDetails && (
+                           <SeasonDetails
+                              closeSeasonDetails={closeSeasonDetails}
+                              id={id}
+                              seasonNumber={currentSeasonNumber}
+                           />
+                        )}
+                     </AnimatePresence>
                   </motion.div>
                )}
             </AnimatePresence>

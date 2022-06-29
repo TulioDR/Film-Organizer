@@ -1,7 +1,6 @@
 import Card from "../components/Card/Card";
 import Title from "../components/Title";
 import CardsGrid from "../components/Card/CardsGrid";
-import LoadMoreBtn from "../components/Card/LoadMoreBtn";
 import AddToListModal from "../components/Modals/AddToListModal";
 
 import { useEffect } from "react";
@@ -17,6 +16,12 @@ import useUserWarning from "../hooks/useUserWarning";
 import { useState } from "react";
 import { AnimateSharedLayout } from "framer-motion";
 import TransitionPoster from "../components/PageTransitions/TransitionPoster";
+import CardSkeleton from "../components/Card/CardSkeleton";
+import AnimatedButton from "../components/AnimatedButton";
+
+const skeletonArray = [
+   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+];
 
 export default function Cards() {
    const { lists } = useSelector((state) => state.lists);
@@ -43,40 +48,39 @@ export default function Cards() {
    return (
       <>
          <Title selectedId={selectedId}>{title}</Title>
-         {isLoading ? (
+         <AnimateSharedLayout>
+            <CardsGrid isLoading={isLoading}>
+               {isLoading
+                  ? skeletonArray.map((number) => <CardSkeleton key={number} />)
+                  : cards?.map((cardInfo, index) => (
+                       <Card
+                          key={index}
+                          lists={lists}
+                          cardInfo={cardInfo}
+                          mediaType={mediaType}
+                          openSaveToListModal={openSaveToListModal}
+                          openWarning={openWarning}
+                          selectedId={selectedId}
+                          setSelectedId={setSelectedId}
+                          setSelectedImg={setSelectedImg}
+                       />
+                    )) || <NoCardsFounded {...{ mediaType }} />}
+            </CardsGrid>
+
+            <TransitionPoster
+               selectedId={selectedId}
+               selectedImg={selectedImg}
+            />
+         </AnimateSharedLayout>
+         {isLoadingMore ? (
             <Loading />
          ) : (
-            <>
-               <AnimateSharedLayout>
-                  <CardsGrid>
-                     {cards?.map((cardInfo, index) => (
-                        <Card
-                           key={index}
-                           lists={lists}
-                           cardInfo={cardInfo}
-                           mediaType={mediaType}
-                           openSaveToListModal={openSaveToListModal}
-                           openWarning={openWarning}
-                           selectedId={selectedId}
-                           setSelectedId={setSelectedId}
-                           setSelectedImg={setSelectedImg}
-                        />
-                     )) || <NoCardsFounded {...{ mediaType }} />}
-                  </CardsGrid>
-
-                  <TransitionPoster
-                     selectedId={selectedId}
-                     selectedImg={selectedImg}
-                  />
-               </AnimateSharedLayout>
-               {isLoadingMore ? (
-                  <div className="w-full h-28 flex justify-center items-center">
-                     <Loading />
-                  </div>
-               ) : (
-                  <LoadMoreBtn {...{ page, loadMoreCards, cards }} />
-               )}
-            </>
+            page < 5 &&
+            cards.length % 20 === 0 && (
+               <AnimatedButton onClick={loadMoreCards}>
+                  Load More
+               </AnimatedButton>
+            )
          )}
 
          <AddToListModal

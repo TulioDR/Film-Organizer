@@ -20,7 +20,7 @@ export default function Select() {
          tabIndex={0}
          onClick={toggle}
          onBlur={() => setOpen(false)}
-         className={`relative outline-none mb-2 ml-6 rounded-md bg-blue-400 dark:bg-blue-600 duration-300 overflow-hidden ${
+         className={`relative outline-none mb-2 ml-4 lg:ml-6 rounded-md bg-blue-400 dark:bg-blue-600 duration-300 overflow-hidden ${
             open ? "h-32" : "h-11"
          }`}
       >

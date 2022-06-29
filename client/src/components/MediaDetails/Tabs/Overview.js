@@ -50,7 +50,7 @@ export default function Overview({ isMovie, media }) {
                               genre.id
                            }`}
                            key={genre.id}
-                           className="bg-blue-400 dark:bg-blue-500 text-white text-sm rounded-md px-2 py-1 cursor-pointer mr-2"
+                           className="bg-blue-400 dark:bg-blue-500 text-white text-sm rounded-md px-2 py-1 cursor-pointer mr-2 float-left my-1"
                         >
                            {genre.name}
                         </Link>

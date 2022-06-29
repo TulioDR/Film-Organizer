@@ -13,7 +13,8 @@ export default function useUser() {
    const dispatch = useDispatch();
    const dispatchLists = useDispatch();
 
-   const login = () => history.push("/auth");
+   const login = () => history.push("/auth/login");
+   const signup = () => history.push("/auth/signup");
    const logout = useCallback(() => {
       setUser(null);
       dispatch({ type: "LOGOUT" });
@@ -34,5 +35,5 @@ export default function useUser() {
       setUser(JSON.parse(localStorage.getItem("profile")));
    }, [user?.token, logout]);
 
-   return [user, login, logout];
+   return [user, login, signup, logout];
 }

@@ -4,7 +4,7 @@ export default function Main({ children }) {
    const { sidebarExtended } = useSidebarExtendedContext();
    return (
       <main
-         className={`pb-10 pl-6 pr-8 relative mt-14 duration-300 md:mt-20 overflow-y-hidden md:${
+         className={`pb-10 px-5 lg:pl-6 lg:pr-8 mt-20 relative duration-300 overflow-y-hidden lg:${
             sidebarExtended ? "ml-60" : "ml-20"
          }`}
       >

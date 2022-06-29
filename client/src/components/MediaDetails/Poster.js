@@ -5,7 +5,7 @@ export default function Poster({ src, posterSize }) {
       <img
          src={getPoster(src, posterSize, true)}
          alt="poster"
-         className="rounded-lg h-full shadow-material"
+         className="rounded-lg object-cover h-full shadow-material"
       />
    );
 }

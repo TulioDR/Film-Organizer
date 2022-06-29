@@ -4,6 +4,7 @@ import DropDown from "./DropDown";
 
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import AnimatedButton from "../AnimatedButton";
 
 export default function Form() {
    const [
@@ -90,7 +91,7 @@ export default function Form() {
             />
          </div>
 
-         <button className="w-52 mx-auto mt-7 bg-purple-900">Search</button>
+         <AnimatedButton>Search</AnimatedButton>
       </form>
    );
 }
