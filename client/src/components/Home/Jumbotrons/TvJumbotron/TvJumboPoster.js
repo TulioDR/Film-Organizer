@@ -8,9 +8,7 @@ export default function TvJumboPoster({ show, index, isFoward }) {
    return (
       <motion.img
          layout
-         src={getPoster(show.poster_path, "md", true)}
-         alt={show.name}
-         initial={firstOne ? {} : { x: distance + 1000 }}
+         initial={firstOne ? { x: "-100%" } : { x: distance + 1000 }}
          animate={
             firstOne
                ? {
@@ -28,11 +26,14 @@ export default function TvJumboPoster({ show, index, isFoward }) {
                ? {
                     duration: lastOne ? 0 : 0.9,
                     delay: lastOne ? 1 : index * 0.07,
+                    ease: "easeInOut",
                  }
-               : { duration: firstOne ? 0 : 0.9 }
+               : { duration: firstOne ? 0 : 0.9, ease: "easeInOut" }
          }
+         src={getPoster(show.poster_path, "md", true)}
+         alt={show.name}
          className={`absolute h-48 w-32 rounded-lg object-cover bottom-5 left-80 ${
-            lastOne ? "" : "z-10"
+            lastOne ? "" : "z-20"
          } `}
       />
    );

@@ -1,11 +1,29 @@
-export default function JumboBtnsContainer({ isAnimating, children }) {
+import { AnimatePresence, motion } from "framer-motion";
+
+export default function JumboBtnsContainer({
+   isAnimating,
+   isLoading,
+   children,
+}) {
    return (
-      <div
-         className={`flex space-x-2 mt-5 transform transition-all duration-300 ${
-            isAnimating ? "translate-y-full opacity-0" : "delay-500"
-         }`}
-      >
-         {children}
-      </div>
+      <AnimatePresence>
+         {!isLoading && (
+            <motion.div
+               initial={{ y: "100%", opacity: 0 }}
+               animate={{
+                  y: isAnimating ? "100%" : 0,
+                  opacity: isAnimating ? 0 : 1,
+               }}
+               transition={{
+                  ease: "easeInOut",
+                  duration: 0.3,
+                  delay: isAnimating ? 0 : 0.5,
+               }}
+               className="flex items-center space-x-4 mt-5"
+            >
+               {children}
+            </motion.div>
+         )}
+      </AnimatePresence>
    );
 }

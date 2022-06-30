@@ -21,10 +21,10 @@ export default function Select() {
          onClick={toggle}
          onBlur={() => setOpen(false)}
          className={`relative outline-none mb-2 ml-4 lg:ml-6 rounded-md bg-blue-400 dark:bg-blue-600 duration-300 overflow-hidden ${
-            open ? "h-32" : "h-11"
+            open ? "h-28" : "h-10"
          }`}
       >
-         <div className="flex h-11 pl-4 cursor-pointer items-center justify-between">
+         <div className="flex h-10 pl-4 cursor-pointer items-center justify-between">
             <div className="flex items-center text-black dark:text-white">
                <span className="material-icons duration-100">
                   {isMovie ? "movie" : "tv"}

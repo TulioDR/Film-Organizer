@@ -10,10 +10,12 @@ export default function SideLists() {
    return (
       <div>
          {sidebarExtended && (
-            <div className="ml-6 mb-1 text-gray-800">Lists</div>
+            <div className="ml-6 mb-1 text-gray-800 dark:text-gray-400">
+               Lists
+            </div>
          )}
          {lists?.length > 0 ? (
-            <ul>
+            <ul className="space-y-1">
                {lists.map((list, index) => (
                   <SideItem
                      key={index}

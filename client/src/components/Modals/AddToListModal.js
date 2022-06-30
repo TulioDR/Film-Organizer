@@ -5,6 +5,7 @@ import ModalContainer from "./ModalParts/ModalContainer";
 import ModalTitle from "./ModalParts/ModalTitle";
 import ModalBody from "./ModalParts/ModalBody";
 import ModalFooter from "./ModalParts/ModalFooter";
+import CloseModalBtn from "./ModalParts/CloseModalBtn";
 
 export default function AddToListModal({
    showSaveToListModal,
@@ -38,7 +39,7 @@ export default function AddToListModal({
                   lists.map((list) => (
                      <li
                         key={list._id}
-                        className={`flex items-center hover:bg-purple-500 dark:hover:bg-purple-900 h-12 ${
+                        className={`flex items-center hover:bg-blue-400 dark:hover:bg-blue-600 h-12 ${
                            isSaved(list, currentData)
                               ? "pointer-events-none"
                               : "cursor-pointer"
@@ -62,7 +63,7 @@ export default function AddToListModal({
             </ul>
          </ModalBody>
          <ModalFooter>
-            <button onClick={closeSaveToListModal}>Close</button>
+            <CloseModalBtn onClick={closeSaveToListModal}>Close</CloseModalBtn>
          </ModalFooter>
       </ModalContainer>
    );

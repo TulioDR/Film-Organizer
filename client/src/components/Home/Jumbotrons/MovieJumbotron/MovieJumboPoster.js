@@ -28,8 +28,9 @@ export default function MovieJumboPoster({ movie, index, isFoward }) {
                ? {
                     duration: lastOne ? 0 : 0.9,
                     delay: lastOne ? 1 : index * 0.07,
+                    ease: "easeInOut",
                  }
-               : { duration: firstOne ? 0 : 0.9 }
+               : { duration: firstOne ? 0 : 0.9, ease: "easeInOut" }
          }
          src={getPoster(movie?.backdrop_path, "xl", true)}
          alt={movie?.title}

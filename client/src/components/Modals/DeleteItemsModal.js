@@ -6,6 +6,8 @@ import ModalContainer from "./ModalParts/ModalContainer";
 import ModalTitle from "./ModalParts/ModalTitle";
 import ModalBody from "./ModalParts/ModalBody";
 import ModalFooter from "./ModalParts/ModalFooter";
+import SubmitModalBtn from "./ModalParts/SubmitModalBtn";
+import CloseModalBtn from "./ModalParts/CloseModalBtn";
 
 export default function DeleteItemsModal({
    itemsToDelete,
@@ -73,8 +75,10 @@ export default function DeleteItemsModal({
             </div>
          </ModalBody>
          <ModalFooter>
-            <button onClick={closeModal}>Cancel</button>
-            <button onClick={deleteItemsFromDB}>Delete</button>
+            <CloseModalBtn onClick={closeModal}>Cancel</CloseModalBtn>
+            <SubmitModalBtn onClick={deleteItemsFromDB} red>
+               Delete
+            </SubmitModalBtn>
          </ModalFooter>
       </ModalContainer>
    );

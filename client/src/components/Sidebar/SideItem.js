@@ -23,13 +23,13 @@ export default function SideItem({ name, icon, link }) {
                className={`h-full rounded-r-md transform ${
                   match?.isExact
                      ? "duration-500 w-full bg-blue-400 dark:bg-blue-600"
-                     : "duration-200 w-20 bg-blue-300 dark:bg-blue-500 -translate-x-full group-hover:translate-x-0"
+                     : "duration-200 w-18 bg-blue-300 dark:bg-blue-500 -translate-x-full group-hover:translate-x-0"
                }`}
             ></div>
             <div className="absolute top-0 left-0 h-full w-full pl-8 lg:pl-10 flex items-center">
                <span className="material-icons">{icon}</span>
                <span
-                  className={`pl-6 truncate transition-opacity duration-100 ${
+                  className={`pl-5 truncate transition-opacity duration-100 ${
                      sidebarExtended ? "" : "opacity-0"
                   }`}
                >

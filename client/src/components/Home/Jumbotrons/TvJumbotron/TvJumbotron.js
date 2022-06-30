@@ -10,10 +10,18 @@ import JumboBtnsContainer from "../JumboBtnsContainer";
 import SaveBtn from "../SaveBtn";
 import MoreInfoBtn from "../MoreInfoBtn";
 import useGetMediaDetails from "../../../../hooks/useGetMediaDetails";
+import useBookmark from "../../../../hooks/useBookmark";
+import { useSelector } from "react-redux";
+import JumboArrowsContainer from "../JumboArrowsContainer";
 
-export default function TvJumbotron({ onAir }) {
+export default function TvJumbotron({
+   onAir,
+   openSaveToListModal,
+   openWarning,
+   isLoading,
+}) {
    const [array, setArray] = useState([]);
-   const [isFoward, setIsFoward] = useState(true);
+   const [isFoward, setIsFoward] = useState(false);
    const [selectedShow, setSelectedShow] = useState(null);
    const [isAnimating, setIsAnimating] = useState(false);
 
@@ -52,32 +60,61 @@ export default function TvJumbotron({ onAir }) {
          setIsAnimating(false);
       }, 900);
    };
+
+   const user = JSON.parse(localStorage.getItem("profile"));
+   const checkUser = () => {
+      if (user)
+         openSaveToListModal(
+            selectedShow.id,
+            "tv",
+            selectedShow.poster_path,
+            selectedShow.title || selectedShow.name
+         );
+      else openWarning();
+   };
+
+   const { lists } = useSelector((state) => state.lists);
+   const [isSaved] = useBookmark(selectedShow?.id, "tv", lists);
    return (
       <JumbotronContainer>
-         <div className="h-full relative overflow-hidden w-80"></div>
-         <div className="flex-1 relative">
+         <div className="h-full relative overflow-hidden w-80 bg-black">
+            <div
+               className={`absolute top-0 left-0 w-full h-full z-40 bg-black duration-500 ${
+                  isLoading ? "bg-opacity-100" : "bg-opacity-0"
+               }`}
+            ></div>
+         </div>
+         <div className="flex-1 relative bg-black">
             <BackgroundPoster
                src={selectedShow?.backdrop_path}
                alt={selectedShow?.name}
                isAnimating={isAnimating}
+               isLoading={isLoading}
             />
             <JumbotronSubtitle>TV Series on Air</JumbotronSubtitle>
             <div className="absolute flex left-0 bottom-48 px-10 pb-10 w-full z-20">
-               <div className="flex items-end space-x-2">
+               <JumboArrowsContainer isLoading={isLoading}>
                   <NextBtn onClick={backward} icon="chevron_left" />
                   <NextBtn onClick={foward} icon="chevron_right" />
-               </div>
+               </JumboArrowsContainer>
                <div className="flex-1 flex flex-col items-end text-right pl-10">
-                  <JumbotronTitle isAnimating={isAnimating}>
+                  <JumbotronTitle
+                     isAnimating={isAnimating}
+                     isLoading={isLoading}
+                  >
                      {selectedShow?.name}
                   </JumbotronTitle>
                   <JumbDate
                      isAnimating={isAnimating}
+                     isLoading={isLoading}
                      date={selectedShow?.first_air_date}
                   />
-                  <JumboBtnsContainer isAnimating={isAnimating}>
-                     <SaveBtn />
+                  <JumboBtnsContainer
+                     isAnimating={isAnimating}
+                     isLoading={isLoading}
+                  >
                      <MoreInfoBtn onClick={getMoreInfo} />
+                     <SaveBtn isSaved={isSaved} checkUser={checkUser} />
                   </JumboBtnsContainer>
                </div>
             </div>

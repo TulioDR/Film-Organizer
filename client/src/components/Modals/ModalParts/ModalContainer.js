@@ -32,7 +32,7 @@ export default function ModalContainer({ isModalOpen, closeModal, children }) {
                ref={modalBackdrop}
             >
                <motion.div
-                  className="bg-white dark:bg-gray max-w-full max-h-4/5 sm:max-w-4/5 rounded-xl p-6 flex flex-col"
+                  className="bg-gray-200 dark:bg-gray-dark max-w-full max-h-4/5 sm:max-w-4/5 rounded-xl p-6 flex flex-col"
                   variants={modal}
                >
                   {children}

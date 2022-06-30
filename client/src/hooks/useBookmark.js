@@ -9,7 +9,12 @@ export default function useBookmark(media_id, media_type, lists) {
             return e.item_id === media_id && e.item_type === media_type;
          };
          for (const list of lists) {
-            if (list.items.some((e) => status(e))) setIsSaved(true);
+            if (list.items.some((e) => status(e))) {
+               setIsSaved(true);
+               break;
+            } else {
+               setIsSaved(false);
+            }
          }
       };
       checkSavedStatus(media_id, media_type, lists);

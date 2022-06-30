@@ -2,7 +2,7 @@ import SideItem from "./SideItem";
 
 export default function SideLinks({ isMovie }) {
    return (
-      <ul className="space-y-2">
+      <ul className="space-y-1">
          <SideItem name="Home" icon="home" link="/home" />
          <SideItem
             name={`Popular ${isMovie ? "Movies" : "TV Series"}`}

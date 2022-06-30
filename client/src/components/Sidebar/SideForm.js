@@ -29,7 +29,7 @@ export default function SideForm() {
       <>
          <div
             onClick={openModal}
-            className={`my-2 bg-blue-400 hover:bg-blue-500 cursor-pointer grid place-content-center duration-200 ${
+            className={`my-2 bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 cursor-pointer grid place-content-center duration-200 ${
                sidebarExtended
                   ? "h-10 ml-6 rounded-md"
                   : "h-4 pointer-events-none"

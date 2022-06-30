@@ -6,6 +6,8 @@ import ModalContainer from "./ModalParts/ModalContainer";
 import ModalTitle from "./ModalParts/ModalTitle";
 import ModalBody from "./ModalParts/ModalBody";
 import ModalFooter from "./ModalParts/ModalFooter";
+import CloseModalBtn from "./ModalParts/CloseModalBtn";
+import SubmitModalBtn from "./ModalParts/SubmitModalBtn";
 export default function DeleteListModal({
    showModal,
    closeModal,
@@ -23,7 +25,7 @@ export default function DeleteListModal({
       closeModal();
    };
    return (
-      <ModalContainer {...{ showModal, closeModal }}>
+      <ModalContainer isModalOpen={showModal} closeModal={closeModal}>
          <ModalTitle>Delete List</ModalTitle>
          <ModalBody>
             <div className="text-base leading-relaxed text-gray-600 dark:text-gray-400 font-normal">
@@ -41,9 +43,10 @@ export default function DeleteListModal({
             </div>
          </ModalBody>
          <ModalFooter>
-            <button onClick={closeModal}>Cancel</button>
-
-            <button onClick={() => deleteThisList(currentId)}>Delete</button>
+            <CloseModalBtn onClick={closeModal}>Cancel</CloseModalBtn>
+            <SubmitModalBtn onClick={() => deleteThisList(currentId)} red>
+               Delete
+            </SubmitModalBtn>
          </ModalFooter>
       </ModalContainer>
    );
