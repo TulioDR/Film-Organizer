@@ -8,7 +8,7 @@ export default function UpMediaContainer({ movie, children }) {
    return (
       <article
          onClick={getMoreInfo}
-         className="relative overflow-hidden rounded-md w-72 min-w-72 group cursor-pointer"
+         className="w-72 min-w-72 cursor-pointer flex flex-col"
       >
          {children}
       </article>
