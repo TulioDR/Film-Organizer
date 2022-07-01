@@ -25,9 +25,7 @@ export default function Sidebar() {
                   <SideLists />
                </>
             ) : (
-               sidebarExtended && (
-                  <LogAdvice sidebarExtended={sidebarExtended} />
-               )
+               <LogAdvice sidebarExtended={sidebarExtended} />
             )}
          </div>
       </SideContainer>
