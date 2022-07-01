@@ -4,9 +4,9 @@ import SideForm from "../components/Sidebar/SideForm";
 import SideLists from "../components/Sidebar/SideLists";
 
 import useSidebarExtendedContext from "../context/SidebarExtendedContext";
-import Select from "../components/Sidebar/SelectSearchType/Select";
 import LogAdvice from "../components/Sidebar/LogAdvice";
 import useValueContext from "../context/ValueContext";
+import ChangeSearch from "../components/Sidebar/ChangeSearch";
 
 export default function Sidebar() {
    const { sidebarExtended } = useSidebarExtendedContext();
@@ -15,7 +15,7 @@ export default function Sidebar() {
    const user = JSON.parse(localStorage.getItem("profile"));
    return (
       <SideContainer>
-         <Select />
+         <ChangeSearch />
          <div className="flex-1 overflow-y-auto">
             <SideLinks isMovie={isMovie} />
 
