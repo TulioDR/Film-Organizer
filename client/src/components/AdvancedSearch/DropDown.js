@@ -31,7 +31,7 @@ export default function DropDown({ title, options, value, setValue }) {
    };
    return (
       <div>
-         <div>{title}</div>
+         <div className="font-medium mb-1">{title}</div>
          <Select
             options={options}
             value={value}

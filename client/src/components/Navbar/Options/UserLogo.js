@@ -12,7 +12,7 @@ export default function UserLogo({ user }) {
                {user.result.name.charAt(0)}
             </div>
          )}
-         <span className="absolute w-auto min-w-max scale-0 group-hover:scale-100 duration-100 text-sm top-full transform translate-y-1 rounded-full bg-blue-400 py-1 px-4">
+         <span className="absolute w-auto min-w-max scale-0 group-hover:scale-100 duration-100 text-sm top-full transform translate-y-1 rounded-full bg-blue-400 dark:bg-blue-600 py-1 px-4">
             Logged in as {user.result.name}
          </span>
       </div>

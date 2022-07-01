@@ -3,7 +3,6 @@ import ModalTitle from "./ModalParts/ModalTitle";
 import ModalBody from "./ModalParts/ModalBody";
 import ModalFooter from "./ModalParts/ModalFooter";
 import CloseModalBtn from "./ModalParts/CloseModalBtn";
-import SubmitModalBtn from "./ModalParts/SubmitModalBtn";
 
 export default function CreateListModal({
    showModal,
@@ -25,6 +24,7 @@ export default function CreateListModal({
                      type="text"
                      name="name"
                      placeholder="List name"
+                     autoComplete="off"
                      value={inputValue}
                      onChange={(e) => setInputValue(e.target.value)}
                      className="text-gray-800 dark:text-white bg-transparent h-12 w-full focus:outline-none border-b-2 border-black dark:border-white"
@@ -33,7 +33,16 @@ export default function CreateListModal({
             </ModalBody>
             <ModalFooter>
                <CloseModalBtn onClick={closeModal}>Close</CloseModalBtn>
-               <SubmitModalBtn>Create</SubmitModalBtn>
+               <button
+                  type="submit"
+                  className={`py-2 px-3 rounded-md ${
+                     inputValue.length === 0
+                        ? "pointer-events-none bg-gray-400 dark:bg-gray-600"
+                        : "bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 hover:dark:bg-blue-700"
+                  }`}
+               >
+                  Create
+               </button>
             </ModalFooter>
          </form>
       </ModalContainer>
