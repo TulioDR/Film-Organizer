@@ -3,7 +3,7 @@ import { motion, AnimateSharedLayout } from "framer-motion";
 export default function Tabs({ tabs, selected, setSelected }) {
    return (
       <AnimateSharedLayout transition={{ duration: 0.5 }}>
-         <div className="flex justify-between border-b border-gray-500 space-x-4 w-full overflow-x-auto overflow-y-hidden scroller-scrollbar">
+         <div className="flex justify-between border-b border-gray-500 dark:border-gray-400 space-x-4 w-full overflow-x-auto overflow-y-hidden tabs-scrollbar">
             {tabs.map((tab, index) => (
                <motion.div
                   key={index}

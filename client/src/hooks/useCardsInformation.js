@@ -46,8 +46,6 @@ export default function useCardsInformation() {
             const url = `${baseURL}/media/${searchType}/${mediaType}${
                !isPopular ? `/${searchQuery}` : ""
             }/${page}`;
-
-            console.log(url);
             const res = await fetch(url);
             const data = await res.json();
 

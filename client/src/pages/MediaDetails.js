@@ -122,6 +122,7 @@ export default function MediaDetails() {
                         x: 0,
                         opacity: 1,
                      }}
+                     exit={{ x: 200, opacity: 0 }}
                      transition={{ duration: 0.5 }}
                      className="flex-1 flex flex-col pt-5 overflow-hidden relative"
                   >
@@ -143,7 +144,7 @@ export default function MediaDetails() {
                            selected={selected}
                            setSelected={setSelected}
                         />
-                        <div className="flex-1 overflow-y-auto card-scrollbar">
+                        <div className="flex-1 overflow-y-auto scroller-scrollbar">
                            <AnimatePresence>
                               {selected === "Overview" && (
                                  <Overview
