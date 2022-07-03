@@ -27,17 +27,19 @@ export default function App() {
                component={() => <Redirect to="/home/login" />}
             />
             <Route exact path="/auth/:type" component={Auth} />
-            <Body>
-               <Providers>
-                  <Navbar />
+            {/* <Body> */}
+            <Providers>
+               <Navbar />
+               <Body>
                   <Sidebar />
                   <Main>
                      <Switch>
                         <Routes />
                      </Switch>
                   </Main>
-               </Providers>
-            </Body>
+               </Body>
+            </Providers>
+            {/* </Body> */}
          </Switch>
       </Router>
    );

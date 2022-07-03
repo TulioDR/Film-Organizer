@@ -6,11 +6,9 @@ export default function ThemeButton() {
    return (
       <button
          onClick={toggleTheme}
-         className="focus:outline-none transition-colors duration-200 bg-gray-200 dark:bg-gray-dark rounded-md h-10 w-10"
+         className="focus:outline-none h-10 w-10 flex items-center justify-center material-icons text-3xl"
       >
-         <span className="material-icons text-2xl flex items-center justify-center">
-            {colorTheme === "dark" ? "dark_mode" : "light_mode"}
-         </span>
+         {colorTheme === "dark" ? "dark_mode" : "light_mode"}
       </button>
    );
 }

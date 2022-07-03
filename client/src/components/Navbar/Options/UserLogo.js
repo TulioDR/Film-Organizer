@@ -1,6 +1,6 @@
 export default function UserLogo({ user }) {
    return (
-      <div className="relative mx-2 flex justify-center group">
+      <div className="hidden sm:flex relative mx-2 justify-center group">
          {user.result.imageUrl ? (
             <img
                src={user.result.imageUrl}

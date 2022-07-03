@@ -4,7 +4,7 @@ export default function LogAdvice({ sidebarExtended }) {
    return (
       <div
          className={`mt-2 ml-6 rounded-md duration-300 text-sm bg-blue-400 dark:bg-blue-600 px-3 grid place-content-center ${
-            sidebarExtended ? "h-20" : "h-11"
+            sidebarExtended ? "h-16" : "h-11"
          }`}
       >
          <AnimatePresence>

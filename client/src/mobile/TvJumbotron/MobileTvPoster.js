@@ -9,13 +9,9 @@ export default function MobileTvPoster({ tv }) {
    return (
       <article
          onClick={getMoreInfo}
-         className="shadow-material cursor-pointer min-w-24 w-24 md:min-w-36 md:w-36"
+         className="shadow-material rounded-lg overflow-hidden cursor-pointer min-w-24 w-24 md:min-w-36 md:w-36"
       >
-         <img
-            src={getPoster(tv.poster_path, "md", true)}
-            alt={tv.name}
-            className="rounded-lg"
-         />
+         <img src={getPoster(tv.poster_path, "md", true)} alt={tv.name} />
       </article>
    );
 }

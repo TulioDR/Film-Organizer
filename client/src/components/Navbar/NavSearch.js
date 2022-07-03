@@ -17,15 +17,21 @@ export default function NavSearch() {
       getMedia,
       handleSubmit,
       isMovie,
+      setIsMovie,
+      changeFoundedType,
    } = useValueContext();
 
+   const changeType = () => {
+      setIsMovie(!isMovie);
+      changeFoundedType(!isMovie);
+   };
    return (
       <form
          onSubmit={handleSubmit}
-         className="hidden lg:flex flex-col pr-4 md:pr-0 h-10 relative bottom-2 md:bottom-0"
+         className="flex flex-col h-10 relative text-sm"
       >
          <div className="w-full flex h-10">
-            <div className="relative flex items-center bg-white dark:bg-gray-200 text-black rounded-full h-full w-80 shadow-md">
+            <div className="relative flex flex-1 md:w-80 items-center bg-white dark:bg-gray-200 text-black rounded-full h-full shadow-md">
                <span className="material-icons h-full w-14 flex items-center justify-center">
                   search
                </span>
@@ -38,12 +44,15 @@ export default function NavSearch() {
                />
                {showDeleteTextBtn && <ClearTextBtn onClick={clearInput} />}
             </div>
-            {/* <button
-               className="ml-2 h-10 w-10 rounded-md bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 text-white grid place-content-center shadow-md focus:outline-none"
+            <button
+               onClick={changeType}
+               className="ml-2 h-10 w-10 md:hidden rounded-md bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 text-white grid place-content-center shadow-md focus:outline-none"
                type="button"
             >
-               <span className="material-icons">filter_list</span>
-            </button> */}
+               <span className="material-icons">
+                  {isMovie ? "movie" : "tv"}
+               </span>
+            </button>
          </div>
 
          {openFounded && (

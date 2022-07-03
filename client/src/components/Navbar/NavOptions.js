@@ -7,7 +7,7 @@ import useUser from "../../hooks/useUser";
 export default function NavOptions() {
    const [user, login, signup, logout] = useUser();
    return (
-      <div className="flex">
+      <div className="flex items-center text-sm">
          <ThemeButton />
          {user ? (
             <UserLogo user={user} />
