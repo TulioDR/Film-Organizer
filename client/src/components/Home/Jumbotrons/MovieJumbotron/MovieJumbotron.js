@@ -45,7 +45,7 @@ export default function MovieJumbotron({
       setTimeout(() => {
          setSelectedMovie(newArray[0]);
          setIsAnimating(false);
-      }, 900);
+      }, 1000);
    };
    const backward = () => {
       setIsFoward(false);
@@ -57,7 +57,7 @@ export default function MovieJumbotron({
       setTimeout(() => {
          setSelectedMovie(newArray[0]);
          setIsAnimating(false);
-      }, 900);
+      }, 1000);
    };
 
    const user = JSON.parse(localStorage.getItem("profile"));
@@ -94,8 +94,16 @@ export default function MovieJumbotron({
             </JumboBtnsContainer>
          </div>
          <JumboArrowsContainer isLoading={isLoading} movie>
-            <NextBtn onClick={backward} icon="chevron_left" />
-            <NextBtn onClick={foward} icon="chevron_right" />
+            <NextBtn
+               onClick={backward}
+               icon="chevron_left"
+               isAnimating={isAnimating}
+            />
+            <NextBtn
+               onClick={foward}
+               icon="chevron_right"
+               isAnimating={isAnimating}
+            />
          </JumboArrowsContainer>
 
          <div

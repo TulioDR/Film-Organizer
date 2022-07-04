@@ -46,7 +46,7 @@ export default function TvJumbotron({
       setTimeout(() => {
          setSelectedShow(newArray[0]);
          setIsAnimating(false);
-      }, 900);
+      }, 1000);
    };
    const backward = () => {
       setIsFoward(false);
@@ -58,7 +58,7 @@ export default function TvJumbotron({
       setTimeout(() => {
          setSelectedShow(newArray[0]);
          setIsAnimating(false);
-      }, 900);
+      }, 1000);
    };
 
    const user = JSON.parse(localStorage.getItem("profile"));
@@ -94,8 +94,16 @@ export default function TvJumbotron({
             <JumbotronSubtitle>TV Series on Air</JumbotronSubtitle>
             <div className="absolute flex left-0 bottom-48 px-10 pb-10 w-full z-20">
                <JumboArrowsContainer isLoading={isLoading}>
-                  <NextBtn onClick={backward} icon="chevron_left" />
-                  <NextBtn onClick={foward} icon="chevron_right" />
+                  <NextBtn
+                     onClick={backward}
+                     icon="chevron_left"
+                     isAnimating={isAnimating}
+                  />
+                  <NextBtn
+                     onClick={foward}
+                     icon="chevron_right"
+                     isAnimating={isAnimating}
+                  />
                </JumboArrowsContainer>
                <div className="flex-1 flex flex-col items-end text-right pl-10">
                   <JumbotronTitle
