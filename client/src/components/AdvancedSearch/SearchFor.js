@@ -27,7 +27,7 @@ export default function SearchFor({ isMovie, changeType }) {
                {`Search For ${isMovie ? "Movies" : "TV Series"}`}
             </span>
             <div className="flex items-center">
-               <span className="w-0.25 h-8 bg-black dark:bg-white"></span>
+               <span className="h-8 bg-black dark:bg-white"></span>
                <span className="material-icons hover:text-gray-400 w-9 text-center">
                   expand_more
                </span>

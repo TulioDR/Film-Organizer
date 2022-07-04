@@ -10,53 +10,22 @@ module.exports = {
             180: "45rem",
          },
          width: {
-            0.25: "1px",
             18: "4.5rem",
             24: "6rem",
             108: "27rem",
-            126: "31.5rem",
-            144: "36rem",
-            "35.8p": "35.8%",
          },
          minWidth: {
-            18: "4.5rem",
             24: "6rem",
             36: "9rem",
             72: "18rem",
             108: "27rem",
-            126: "31.5rem",
-            144: "36rem",
-         },
-         maxWidth: {
-            "4/5": "80%",
-         },
-         minHeight: {
-            52: "13rem",
-         },
-         maxHeight: {
-            "4/5": "80%",
-         },
-         padding: {
-            62: "15.5rem",
-         },
-         margin: {
-            62: "15.5rem",
          },
          left: {
             66: "16.5rem",
          },
          colors: {
-            purple: {
-               DEFAULT: "#5B21CE",
-               dark: "#1e0840",
-               light: "#cecce4",
-            },
             gray: {
                DEFAULT: "#282828",
-               1: "#d2d3d3",
-               2: "#7d7f80",
-               3: "#555759",
-               4: "#2d3032",
                light: "#383838",
                lightDark: "#212121",
                dark: "#181818",
@@ -67,7 +36,6 @@ module.exports = {
          },
          boxShadow: {
             material: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-            seasonCard: "-5px 0px 5px 0px rgba(0,0,0,0.5)",
          },
       },
    },
