@@ -1,30 +1,26 @@
 import InputText from "./SearchBar/InputText";
 import FoundedMedia from "./SearchBar/FoundedMedia";
 import ClearTextBtn from "./SearchBar/ClearTextBtn";
-// import SearchBtn from "./SearchBar/SearchBtn";
 import useValueContext from "../../context/ValueContext";
+import useSearchInput from "../../hooks/useSearchInput";
 
 export default function NavSearch() {
+   const { isMovie, toggleIsMovie } = useValueContext();
+
    const {
-      openFounded,
       inputValue,
+      openFounded,
       founded,
+      showDeleteTextBtn,
       handleInputChange,
       handleInputFocus,
-      closeOnBlur,
+      handleInputBlur,
       clearInput,
-      showDeleteTextBtn,
       getMedia,
       handleSubmit,
-      isMovie,
-      setIsMovie,
-      changeFoundedType,
-   } = useValueContext();
+      searchInput,
+   } = useSearchInput({ isMovie });
 
-   const changeType = () => {
-      setIsMovie(!isMovie);
-      changeFoundedType(!isMovie);
-   };
    return (
       <form
          onSubmit={handleSubmit}
@@ -40,12 +36,13 @@ export default function NavSearch() {
                   isMovie={isMovie}
                   handleInputFocus={handleInputFocus}
                   handleInputChange={handleInputChange}
-                  onBlur={closeOnBlur}
+                  onBlur={handleInputBlur}
+                  searchInput={searchInput}
                />
                {showDeleteTextBtn && <ClearTextBtn onClick={clearInput} />}
             </div>
             <button
-               onClick={changeType}
+               onClick={toggleIsMovie}
                className="ml-2 h-10 w-10 md:hidden rounded-md bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 text-white grid place-content-center shadow-md focus:outline-none"
                type="button"
             >

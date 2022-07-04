@@ -1,27 +1,36 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { fetchFounded } from "../utils/getFoundedMedia";
 
-export default function useSearchInput({ closeMobileSearch }) {
+export default function useSearchInput({ isMovie }) {
    const [inputValue, setInputValue] = useState("");
    const [openFounded, setOpenFounded] = useState(false);
    const [founded, setFounded] = useState([]);
    const [showDeleteTextBtn, setShowDeleteTextBtn] = useState(false);
 
-   const handleInputChange = async (e, isMovie, mobile) => {
-      const val = e.target.value;
-      setInputValue(val);
-      if (val.length) {
-         const data = await fetchFounded(val, isMovie, mobile);
-         setFounded(data);
-         setShowDeleteTextBtn(true);
-         if (data.length > 0) setOpenFounded(true);
-         else setOpenFounded(false);
-      } else {
-         setFounded([]);
-         setShowDeleteTextBtn(false);
-         setOpenFounded(false);
-      }
+   const searchInput = useRef(null);
+
+   const handleInputChange = (e) => {
+      setInputValue(e.target.value);
    };
+   useEffect(() => {
+      const getFoundedMedia = async () => {
+         if (inputValue.length) {
+            const data = await fetchFounded(inputValue, isMovie);
+            setFounded(data);
+            searchInput.current.focus();
+            setShowDeleteTextBtn(true);
+            if (data.length > 0) setOpenFounded(true);
+            else setOpenFounded(false);
+         } else {
+            setFounded([]);
+            setShowDeleteTextBtn(false);
+            setOpenFounded(false);
+         }
+      };
+      getFoundedMedia();
+   }, [inputValue, isMovie]);
+
    const clearInput = () => {
       setInputValue("");
       setShowDeleteTextBtn(false);
@@ -33,32 +42,37 @@ export default function useSearchInput({ closeMobileSearch }) {
       if (founded.length) setOpenFounded(true);
    };
    const handleInputBlur = (e) => {
+      console.log("blur");
       const target = e.relatedTarget;
       const foundedList = target && target.className.includes("nav-founded");
       if (!foundedList) setOpenFounded(false);
    };
 
-   const changeFoundedType = async (isMovie) => {
-      if (inputValue.length) {
-         const data = await fetchFounded(inputValue, isMovie);
-         setFounded(data);
-      }
+   const history = useHistory();
+   const getMedia = (id) => {
+      const mediaType = isMovie ? "movie" : "tv";
+      history.push(`/media-details/${mediaType}/${id}`);
+      setOpenFounded(false);
    };
-   const closeSearch = (mobile) => {
-      if (mobile) closeMobileSearch();
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      const mediaType = isMovie ? "movie" : "tv";
+      history.push(`/search/search/${mediaType}/${inputValue}`);
       setOpenFounded(false);
    };
 
-   return [
+   return {
       inputValue,
       openFounded,
       founded,
       showDeleteTextBtn,
       handleInputChange,
-      clearInput,
       handleInputFocus,
       handleInputBlur,
-      closeSearch,
-      changeFoundedType,
-   ];
+      clearInput,
+      getMedia,
+      handleSubmit,
+      setOpenFounded,
+      searchInput,
+   };
 }

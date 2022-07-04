@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 
 // Containers
-import Body from "./containers/Body";
 import Providers from "./containers/Providers";
 import Navbar from "./containers/Navbar";
 import Sidebar from "./containers/Sidebar";
@@ -27,19 +26,15 @@ export default function App() {
                component={() => <Redirect to="/home/login" />}
             />
             <Route exact path="/auth/:type" component={Auth} />
-            {/* <Body> */}
             <Providers>
                <Navbar />
-               <Body>
-                  <Sidebar />
-                  <Main>
-                     <Switch>
-                        <Routes />
-                     </Switch>
-                  </Main>
-               </Body>
+               <Sidebar />
+               <Main>
+                  <Switch>
+                     <Routes />
+                  </Switch>
+               </Main>
             </Providers>
-            {/* </Body> */}
          </Switch>
       </Router>
    );

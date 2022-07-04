@@ -2,8 +2,8 @@ import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 import useUser from "../../hooks/useUser";
 
 export default function NavBrand() {
-   const { toggleSidebarExtended, toggleSidebarRevealed } =
-      useSidebarExtendedContext();
+   // const { toggleSidebarExtended, toggleSidebarRevealed } =
+   const { toggleSidebarExtended } = useSidebarExtendedContext();
    const [user] = useUser();
 
    return (

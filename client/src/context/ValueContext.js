@@ -1,7 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import useMobileSearch from "../hooks/useMobileSearch";
-import useSearch from "../hooks/useSearch";
-import useSearchInput from "../hooks/useSearchInput";
 
 import { useParams } from "react-router-dom";
 const ValueContext = createContext();
@@ -21,47 +18,11 @@ export function ValueProvider({ children }) {
       } else setIsMovie(true);
    }, [mediaType]);
 
-   const [showMobileSearch, openMobileSearch, closeMobileSearch] =
-      useMobileSearch();
-
-   const [
-      inputValue,
-      openFounded,
-      founded,
-      showDeleteTextBtn,
-      handleInputChange,
-      clearInput,
-      handleInputFocus,
-      handleInputBlur,
-      closeSearch,
-      changeFoundedType,
-   ] = useSearchInput({ closeMobileSearch });
-
-   const [getMedia, handleSubmit] = useSearch({
-      isMovie,
-      inputValue,
-      closeSearch,
-   });
-
-   const data = {
-      isMovie,
-      setIsMovie,
-      showMobileSearch,
-      openMobileSearch,
-      closeMobileSearch,
-      inputValue,
-      openFounded,
-      founded,
-      showDeleteTextBtn,
-      handleInputChange,
-      clearInput,
-      handleInputFocus,
-      handleInputBlur,
-      closeSearch,
-      changeFoundedType,
-      getMedia,
-      handleSubmit,
+   const toggleIsMovie = () => {
+      setIsMovie(!isMovie);
    };
+
+   const data = { isMovie, toggleIsMovie };
 
    return (
       <ValueContext.Provider value={data}>{children}</ValueContext.Provider>

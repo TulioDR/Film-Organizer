@@ -4,14 +4,15 @@ export default function InputText({
    handleInputFocus,
    handleInputChange,
    onBlur,
-   mobile,
+   searchInput,
 }) {
    return (
       <input
+         ref={searchInput}
          type="text"
          spellCheck="false"
          value={value}
-         onChange={(e) => handleInputChange(e, isMovie, mobile)}
+         onChange={(e) => handleInputChange(e)}
          placeholder={`Search ${isMovie ? "Movies" : "TV Series"}`}
          className="h-full flex-grow pr-11 outline-none bg-transparent"
          onFocus={handleInputFocus}
