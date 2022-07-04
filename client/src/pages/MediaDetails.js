@@ -103,15 +103,10 @@ export default function MediaDetails() {
 
    return (
       <>
-         <div className="md:flex md:space-x-12 w-full media-details-height">
-            <div className="aspect-w-2 aspect-h-3">
-               <div
-                  className="relative"
-                  style={{ height: "calc(100vh - 7.5rem)" }}
-               >
-                  <Poster src={selectedPoster} posterSize={posterSize} />
-                  <SaveButton onClick={checkUser} isSaved={isSaved} />
-               </div>
+         <div className="lg:flex md:space-x-12 w-full media-details-height">
+            <div className="relative h-full w-full sm:w-1/2 md:w-1/3 lg:w-auto mx-auto">
+               <Poster src={selectedPoster} posterSize={posterSize} />
+               <SaveButton onClick={checkUser} isSaved={isSaved} />
             </div>
 
             <AnimatePresence>

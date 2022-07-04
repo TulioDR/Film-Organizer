@@ -1,6 +1,6 @@
 export default function EpisodeOverview({ name, overview }) {
    return (
-      <div className="p-4 pb-0 h-full overflow-y-auto card-scrollbar flex-1 ">
+      <div className="p-4 pb-0 h-full overflow-y-auto scroller-scrollbar flex-1">
          <div className="text-lg font-medium mb-1 text-black dark:text-white">
             {name}
          </div>

@@ -6,7 +6,7 @@ export default function Tabs({ tabs, selected, setSelected }) {
          {tabs.map((tab, index) => (
             <motion.div
                key={index}
-               className={`pb-3 uppercase relative cursor-pointer min-w-max ${
+               className={`pb-3 uppercase text-sm sm:text-base relative cursor-pointer min-w-max ${
                   tab === selected
                      ? "text-black dark:text-white"
                      : "text-gray-500 dark:text-gray-400"

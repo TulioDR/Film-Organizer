@@ -43,7 +43,7 @@ export default function NavSearch() {
             </div>
             <button
                onClick={toggleIsMovie}
-               className="ml-2 h-10 w-10 md:hidden rounded-md bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 text-white grid place-content-center shadow-md focus:outline-none"
+               className="ml-2 h-10 w-10 md:hidden rounded-md bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 grid place-content-center shadow-md focus:outline-none"
                type="button"
             >
                <span className="material-icons">

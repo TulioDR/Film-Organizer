@@ -2,8 +2,8 @@ import useSidebarExtendedContext from "../../context/SidebarExtendedContext";
 import useUser from "../../hooks/useUser";
 
 export default function NavBrand() {
-   // const { toggleSidebarExtended, toggleSidebarRevealed } =
-   const { toggleSidebarExtended } = useSidebarExtendedContext();
+   const { toggleSidebarExtended, toggleSidebarRevealed } =
+      useSidebarExtendedContext();
    const [user] = useUser();
 
    return (
@@ -14,9 +14,12 @@ export default function NavBrand() {
          >
             <span className="material-icons">menu</span>
          </button>
-         {/* <button onClick={toggleSidebarRevealed} className="lg:hidden">
+         <button
+            onClick={toggleSidebarRevealed}
+            className="hidden md:grid lg:hidden mr-2"
+         >
             <span className="material-icons">menu</span>
-         </button> */}
+         </button>
          {user && (
             <div className="sm:hidden flex">
                <div className="mr-2">

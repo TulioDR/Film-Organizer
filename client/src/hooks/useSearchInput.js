@@ -15,7 +15,7 @@ export default function useSearchInput({ isMovie }) {
    };
    useEffect(() => {
       const getFoundedMedia = async () => {
-         if (inputValue.length) {
+         if (inputValue.length > 0) {
             const data = await fetchFounded(inputValue, isMovie);
             setFounded(data);
             searchInput.current.focus();
@@ -42,7 +42,6 @@ export default function useSearchInput({ isMovie }) {
       if (founded.length) setOpenFounded(true);
    };
    const handleInputBlur = (e) => {
-      console.log("blur");
       const target = e.relatedTarget;
       const foundedList = target && target.className.includes("nav-founded");
       if (!foundedList) setOpenFounded(false);
