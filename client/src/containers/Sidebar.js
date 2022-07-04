@@ -11,10 +11,10 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import CreateListModal from "../components/Modals/CreateListModal";
 import { createList } from "../actions/lists";
+import MobileToggle from "../components/Sidebar/MobileToggle";
 
 export default function Sidebar() {
-   const { sidebarExtended, toggleSidebarRevealed } =
-      useSidebarExtendedContext();
+   const { sidebarExtended } = useSidebarExtendedContext();
    const { isMovie } = useValueContext();
 
    const user = JSON.parse(localStorage.getItem("profile"));
@@ -41,30 +41,17 @@ export default function Sidebar() {
    return (
       <>
          <SideContainer>
-            <div className="flex lg:hidden my-4 items-center">
-               <button
-                  onClick={toggleSidebarRevealed}
-                  className="ml-4 mr-2 bg-blue-400 dark:bg-blue-600 rounded-md h-10 w-10 grid place-content-center"
-               >
-                  <span className="material-icons">menu</span>
-               </button>
-               <span className="app-brand text-2xl uppercase text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-blue-300 dark:from-blue-600 dark:to-blue-500">
-                  Film's Organizer
-               </span>
-            </div>
+            <MobileToggle />
             <ChangeSearch />
-            <div className="flex-1 overflow-y-auto">
-               <SideLinks isMovie={isMovie} />
-
-               {user ? (
-                  <>
-                     <SideForm openModal={openModal} />
-                     <SideLists />
-                  </>
-               ) : (
-                  <LogAdvice sidebarExtended={sidebarExtended} />
-               )}
-            </div>
+            <SideLinks isMovie={isMovie} />
+            {user ? (
+               <>
+                  <SideForm openModal={openModal} />
+                  <SideLists />
+               </>
+            ) : (
+               <LogAdvice sidebarExtended={sidebarExtended} />
+            )}
          </SideContainer>
          <CreateListModal
             showModal={showModal}

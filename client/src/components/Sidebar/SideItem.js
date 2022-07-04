@@ -11,22 +11,19 @@ export default function SideItem({ name, icon, link }) {
       strict: false,
    });
    return (
-      <li className="h-11 group flex items-center" onClick={closeSidebarMobile}>
-         {!sidebarExtended && (
-            <span className="absolute left-full transform translate-x-2 bg-blue-400 dark:bg-blue-600 py-1 px-3 w-auto min-w-max transition-all duration-100 delay-200 scale-0 group-hover:scale-100 origin-left text-sm rounded-md">
-               {name}
-            </span>
-         )}
-
+      <li
+         className="h-11 group flex items-center w-full"
+         onClick={closeSidebarMobile}
+      >
          <Link to={link} className="relative h-full w-full">
             <div
                className={`h-full rounded-r-md transform ${
                   match?.isExact
                      ? "duration-500 w-full bg-blue-400 dark:bg-blue-600"
-                     : "duration-200 w-18 bg-blue-300 dark:bg-blue-500 -translate-x-full group-hover:translate-x-0"
+                     : `duration-200 bg-blue-300 dark:bg-blue-500 -translate-x-full group-hover:translate-x-0 w-16`
                }`}
             ></div>
-            <div className="absolute top-0 left-0 h-full w-full pl-8 lg:pl-10 flex items-center">
+            <div className="absolute top-0 left-0 h-full w-full pl-8 flex items-center">
                <span className="material-icons">{icon}</span>
                <span
                   className={`pl-5 truncate transition-opacity duration-100 ${
