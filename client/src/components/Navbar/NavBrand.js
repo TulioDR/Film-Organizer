@@ -10,7 +10,7 @@ export default function NavBrand() {
       <span className="flex items-center h-12">
          <button
             onClick={toggleSidebarExtended}
-            className="hidden lg:grid mr-5"
+            className="hidden lg:grid mr-2 focus:outline-none h-10 w-10 place-content-center"
          >
             <span className="material-icons">menu</span>
          </button>
@@ -47,7 +47,7 @@ export default function NavBrand() {
          <span
             className={`${
                user ? "hidden" : ""
-            }  sm:block app-brand text-sm md:text-xl lg:text-2xl uppercase text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-blue-300 dark:from-blue-600 dark:to-blue-500`}
+            }  sm:block app-brand text-2xl uppercase text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-blue-300 dark:from-blue-600 dark:to-blue-500`}
          >
             Film's Organizer
          </span>

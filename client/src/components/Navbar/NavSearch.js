@@ -27,7 +27,7 @@ export default function NavSearch() {
          className="flex flex-col h-10 relative text-sm"
       >
          <div className="w-full flex h-10">
-            <div className="relative flex flex-1 md:w-80 items-center bg-white dark:bg-gray-200 text-black rounded-full h-full shadow-md">
+            <div className="relative flex flex-1 md:w-72 lg:w-80 items-center bg-white dark:bg-gray-200 text-black rounded-full h-full shadow-md">
                <span className="material-icons h-full w-14 flex items-center justify-center">
                   search
                </span>

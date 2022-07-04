@@ -23,7 +23,7 @@ export default function ModalContainer({ isModalOpen, closeModal, children }) {
       <AnimatePresence exitBeforeEnter>
          {isModalOpen && (
             <motion.div
-               className="fixed top-0 left-0 w-screen h-screen z-50 bg-black bg-opacity-50 flex justify-center items-center"
+               className="fixed z-50 top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center"
                variants={backdrop}
                initial="hidden"
                animate="visible"
