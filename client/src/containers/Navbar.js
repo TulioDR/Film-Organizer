@@ -7,7 +7,7 @@ export default function Navbar() {
    const { toggleSidebarRevealed } = useSidebarExtendedContext();
    return (
       <>
-         <div className="md:sticky z-40 top-0 pt-5 pb-3 md:pb-5 px-4 md:px-8 backgorund-colors">
+         <div className="md:sticky z-40 top-0 pt-5 pb-3 md:pb-5 px-4 md:pl-6 md:pr-8 backgorund-colors">
             <div className="h-10 flex items-center justify-between">
                <NavBrand />
                <div className="hidden md:block">
