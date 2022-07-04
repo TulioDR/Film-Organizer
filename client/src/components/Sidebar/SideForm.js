@@ -7,7 +7,7 @@ export default function SideForm({ openModal }) {
    return (
       <div
          onClick={openModal}
-         className="my-2 bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 cursor-pointer grid place-content-center duration-200 h-11 ml-6 rounded-md"
+         className="my-1 bg-blue-400 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-700 cursor-pointer grid place-content-center duration-200 h-11 ml-6 rounded-md"
       >
          <div className="flex items-center space-x-2">
             <AnimatePresence>

@@ -1,27 +1,30 @@
-export default function UserWarning({ close, logIn }) {
+import ModalContainer from "./ModalParts/ModalContainer";
+import ModalFooter from "./ModalParts/ModalFooter";
+import ModalTitle from "./ModalParts/ModalTitle";
+
+export default function UserWarning({ isModalOpen, close, logIn }) {
    return (
-      <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 text-white z-50 grid place-content-center p-6">
-         <div className="p-5 rounded-lg bg-gray max-w-full shadow-material">
-            <div className="text-lg mb-3">
-               Log in first to save movies and TV shows into your lists.
+      <ModalContainer isModalOpen={isModalOpen} closeModal={close}>
+         <ModalTitle>
+            <div className="flex items-center space-x-2">
+               <span>Warning</span>
+               <span className="material-icons text-3xl">warning</span>
             </div>
-            <div className="flex justify-end space-x-3">
-               <button
-                  onClick={close}
-                  className="pl-2 pr-3 py-2 rounded-md bg-red-900 focus:outline-none flex items-center"
-               >
-                  <span className="material-icons mr-2">arrow_back</span>
-                  <span>Cancel</span>
-               </button>
-               <button
-                  onClick={logIn}
-                  className="pl-2 pr-3 py-2 rounded-md bg-purple focus:outline-none flex items-center"
-               >
-                  <span className="material-icons mr-2">login</span>
-                  <span>Log In</span>
-               </button>
-            </div>
+         </ModalTitle>
+         <div className="mb-3">
+            Log in first to save Movies and TV shows into your lists.
          </div>
-      </div>
+         <ModalFooter>
+            <button onClick={close} className="px-3 py-2 focus:outline-none">
+               Cancel
+            </button>
+            <button
+               onClick={logIn}
+               className="px-4 py-2 rounded-md focus:outline-none bg-gray-dark text-white dark:bg-gray-200 dark:text-black"
+            >
+               Log In
+            </button>
+         </ModalFooter>
+      </ModalContainer>
    );
 }

@@ -86,7 +86,11 @@ export default function Cards() {
          <AddToListModal
             {...{ showSaveToListModal, closeSaveToListModal, currentData }}
          />
-         {showWarning && <UserWarning close={closeWarning} logIn={goToLogin} />}
+         <UserWarning
+            isModalOpen={showWarning}
+            close={closeWarning}
+            logIn={goToLogin}
+         />
       </>
    );
 }
