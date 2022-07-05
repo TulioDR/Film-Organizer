@@ -1,6 +1,6 @@
 # Film Organizer
 
-![home](./client/public/images/screenshots/home.png)
+![home](./client/public/images/screenshots/home-light.png)
 
 Film organizer is a full stack MERN application (MongoDB, Express, React, NodeJS).
 You can Sign up using a Google account or your own email and password.
@@ -16,7 +16,7 @@ Once you're logged you can create lists to and save Movies and Shows to them.
 
 ### Dark Mode! 🌙
 
-![DarkMode](./client/public/images/screenshots/dark.png)
+![DarkMode](./client/public/images/screenshots/home-dark.png)
 
 The app has a night theme integrated that you can activate when you need it. This process is done smoothly thanks to the way tailwind implements dark mode.
 
