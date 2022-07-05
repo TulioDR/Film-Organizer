@@ -18,26 +18,24 @@ Once you're logged you can create lists to and save Movies and Shows to them.
 
 ![DarkMode](./client/public/images/screenshots/home-dark.png)
 
-The app has a night theme integrated that you can activate when you need it. This process is done smoothly thanks to the way tailwind implements dark mode.
-
 ## Languages used in the App
 
 ### Frontend
 
--  <img alt="React"  width="46px"  src="./client/public/images/logos/react.png" /><font size="5">React</font>
-
--  <img alt="JavaScript"  width="46px"  src="./client/public/images/logos/javascript.png" /> <font size="5"> Javascript </font>
-
--  <img alt="HTML5"  width="46px"  src="./client/public/images/logos/html5.png" /><font size="5"> HTML </font>
-
--  <img alt="Sass"  width="46px"  src="./client/public/images/logos/sass.png" /><font size="5"> SCSS </font>
-
--  <img alt="Tailwind"  width="46px"  src="./client/public/images/logos/tailwind.png" /> <font size="5"> Tailwind (to simplify styling) </font>
+-  <img alt="React" align="center" width="46px" src="./client/public/images/logos/react.png" /><font size="4">React</font>
+   &nbsp;
+-  <img alt="JavaScript" align="center" width="46px" src="./client/public/images/logos/javascript.png" /> <font size="4"> Javascript </font>
+   &nbsp;
+-  <img alt="HTML5" align="center" width="46px"  src="./client/public/images/logos/html5.png" /><font size="4"> HTML </font>
+   &nbsp;
+-  <img alt="Sass" align="center" width="46px"  src="./client/public/images/logos/sass.png" /><font size="4"> SCSS </font>
+   &nbsp;
+-  <img alt="Tailwind" align="center" width="46px"  src="./client/public/images/logos/tailwind.png" /> <font size="4"> Tailwind (to simplify styling) </font>
 
 ### Backend
 
--  <img alt="Node.js"  width="46px"  src="./client/public/images/logos/nodejs.png" /><font  size="5"> Node JS </font>
-
--  <img alt="Express"  width="46px"  src="./client/public/images/logos/express.png" /><font  size="5"> Express </font>
-
--  <img alt="MongoDB"  width="46px"  src="./client/public/images/logos/mongodb.png" /> <font  size="5"> MongoDB </font>
+-  <img alt="Node.js" align="center" width="46px"  src="./client/public/images/logos/nodejs.png" /><font  size="4"> Node JS </font>
+   &nbsp;
+-  <img alt="Express" align="center" width="46px"  src="./client/public/images/logos/express.png" /><font  size="4"> Express </font>
+   &nbsp;
+-  <img alt="MongoDB" align="center" width="46px"  src="./client/public/images/logos/mongodb.png" /> <font  size="4"> MongoDB </font>
