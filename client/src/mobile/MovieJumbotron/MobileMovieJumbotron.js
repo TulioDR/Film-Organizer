@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/swiper.scss";
 import MobileMoviePoster from "./MobileMoviePoster";
