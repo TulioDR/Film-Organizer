@@ -14,7 +14,7 @@ export default function InputText({
          value={value}
          onChange={(e) => handleInputChange(e)}
          placeholder={`Search ${isMovie ? "Movies" : "TV Series"}`}
-         className="h-full flex-grow pr-11 outline-none bg-transparent"
+         className="h-full w-full pr-11 outline-none bg-transparent"
          onFocus={handleInputFocus}
          onBlur={onBlur}
       />
